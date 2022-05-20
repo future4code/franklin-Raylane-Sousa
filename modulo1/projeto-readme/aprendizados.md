@@ -1,0 +1,5 @@
+#APRENDIZADOS DA SEMANA
+
+Nessa semana de onboarding da **Labenu**, aprendi um pouco mais sobre a história do computador, como funcionava a máquina de turing, e as funções de cada parte da máquina e sua evolução até os dias atuais. 
+Aprendi também os conceitos importantes da lógica e programação com a playlist de lógica de programação do youtube disponibilizada pelos instrutores. Na prática, aprendi como realizar as configurações básicas do **github** e a criar diretórios, arquivos, branchs utilizando comandos pelo **terminal gitbash** e utilizar melhor os recursos do editor **VScode**.  
+No ultimo dia da semana, aprendi conceitos importantes sobre como trabalhar e me comunicar melhor em grupo, na oficida de soft skills ministrada pela Ane e Gui, sou grata pois todo o aprendizado tem sido de grande importância para o inicio da minha jornada como programadora.
