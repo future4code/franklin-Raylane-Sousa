@@ -4,7 +4,8 @@ import styled from 'styled-components'
 const CardGrandeContainer = styled.div`  //styled componente que substitui a tag div
     display: flex;
     align-items: center;
-    border: 1px solid black;
+    border: 15px solid gray;
+    border-radius: 20px;
     padding: 20px 10px;
     margin-bottom: 10px;
     height: 200px;

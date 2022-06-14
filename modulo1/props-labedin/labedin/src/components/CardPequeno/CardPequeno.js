@@ -4,7 +4,8 @@ import styled from 'styled-components'
 const CardPequenoContainer = styled.div`
     display: flex;
     align-items: center;
-    border: 1px solid black;
+    border: 10px solid black;
+    border-radius: 20px;
     padding: 20px 10px;
     margin-bottom: 10px;
     height: 80px;
@@ -14,7 +15,7 @@ const CardPequenoContainer = styled.div`
 const CardPequenoImg = styled.img`
     width: 50px;
     margin-right: 10px;
-    border-radius: 0%;
+
 
 `
 
