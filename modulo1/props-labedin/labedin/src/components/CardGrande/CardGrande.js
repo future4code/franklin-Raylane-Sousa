@@ -1,8 +1,7 @@
 import React from 'react';
-import './CardGrande.css'
 import styled from 'styled-components'
 
-const CardGrandeContainer = styled.div`
+const CardGrandeContainer = styled.div`  //styled componente que substitui a tag div
     display: flex;
     align-items: center;
     border: 1px solid black;
@@ -10,15 +9,15 @@ const CardGrandeContainer = styled.div`
     margin-bottom: 10px;
     height: 200px;
 
-`
+` 
 
-const CardGrandeImg = styled.img`
+const CardGrandeImg = styled.img` //styled componente que substitui a tag img
     width: 70px;
     margin-right: 10px;
     border-radius: 0%;
 
 `
-function CardGrande(props) {
+function CardGrande(props) {     //componente (função do card grande)
     return (
         <CardGrandeContainer>
             <CardGrandeImg src={ props.imagem } />
