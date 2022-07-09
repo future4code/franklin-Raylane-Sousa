@@ -1,0 +1,35 @@
+-- Login
+form
+page
+styled
+
+
+___________________________
+
+pagina de cadastro 
+
+
+___________________________
+
+integracao do login, uma requisicao comun
+
+estar logado = ter um token guardado no local storage
+Login é do Tipo POST 
+
+salvar o toke do usuario no localstorage
+
+
+funcao de login separada e importada para o arquivo login page
+
+salvar na pasta services criar arquivo user e recipe 
+
+
+chamar componentne de protecao em cima de todas as paginas 
+useProtectedPage
+
+useUnprotectedpage Na tela de LOGIN E CADASTRO 
+
+
+
+
+
