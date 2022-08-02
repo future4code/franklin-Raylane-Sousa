@@ -1,0 +1,16 @@
+{
+  "name": "exercicio2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exercicio2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node exercicio2.js soma 2 2",
+    "subt": "node exercicio2.js subt 10 2",
+    "mult": "node exercicio2.js mult 50 2",
+    "div": "node exercicio2.js div 100 2",
+    "erro": "node exercicio2.js err"
+  },
+  "author": "",
+  "license": "ISC"
+}
