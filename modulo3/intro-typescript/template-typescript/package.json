@@ -1,0 +1,24 @@
+{
+  "name": "introducao-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "ex01": "tsc && node ./build/ex01.js",
+    "ex02": "tsc && node ./build/ex02.js",
+    "ex03": "tsc && node ./build/ex03.js",
+    "ex04": "tsc && node ./build/ex04.js",
+    "ex05": "tsc && node ./build/ex05.js",
+    "ex06": "tsc && node ./build/ex06.js",
+    "ex07": "tsc && node ./build/ex07.js",
+    "ex08": "tsc && node ./build/ex08.js",
+    "ex08_1": "tsc && node ./build/ex08_1.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.5.4"
+  }
+}
