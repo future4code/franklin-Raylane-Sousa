@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "f20be3ae-a248-4913-aa54-3637ad322df9",
+		"name": "ExpressExercicio",
+		"description": "Esta API foi criada para pratica da introdução a API e Express do curso de desenvolvimento Full Stack Labenu.\n\nNela temos uma Base de dados mockada para realizar requisições GET e POST de usuários e posts.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21751215"
+	},
+	"item": [
+		{
+			"name": "welcome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						""
+					]
+				},
+				"description": "## DESCRIÇÃO\n\nEsta requisição retorna uma mensagem de Boas Vindas."
+			},
+			"response": []
+		},
+		{
+			"name": "allUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/allusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"allusers"
+					]
+				},
+				"description": "## DESCRIÇÃO:\n\nEsta requisição serve para ver as informações gerais de todos os usuários.\n\n## OUTPUT\n\n**Body** array com as informações de um usuário no seguinte formato:\n\n`id:` id do usuário\n\n`name:` nome do usuário\n\n`address:` endereço do usuário com `street` e `city`\n\n`email:` email do usuário\n\n`website:` website\n\n``` json\n{\n        \"id\": 1,\n        \"name\": \"Jane Doe\",\n        \"address\": {\n            \"street\": \"Beauty Views\",\n            \"city\": \"Sky\"\n        },\n        \"email\": \"raylane.ncs@gmail.com\",\n        \"website\": \"www.domain.com\"\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "allPosts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/allposts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"allposts"
+					]
+				},
+				"description": "## DESCRIÇÃO:\n\nEsta requisição serve para ver formações gerais de todos os posts existentes dos usuários.\n\n## OUTPUT\n\n**Body** retorna array com informações de um post no seguinte formato:\n\n`id:` id do post\n\n`title:` título do post\n\n`body:` conteúdo do post\n\n`userId:` id do usuário\n\n``` json\n {\n        \"id\": 2,\n        \"title\": \"The night is darker\",\n        \"body\": \"The sky is darkblue\",\n        \"userId\": 1\n    }\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "findPostByUserId",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/users/:id/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"users",
+						":id",
+						"post"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				},
+				"description": "## DESCRIÇÃO\n\nEsta requisição encontra posts de acordo com o `id` de um determinado usuário.\n\n### INPUT\n\n#### Path Param\n\n`id`\n\n### OUTPUT\n\n**Body** retorna array com informações de um post no seguinte formato:\n\n`id:` id do post\n\n`title:` título do post\n\n`body:` conteúdo do post\n\n`userId:` id do usuário\n\n``` json\n{\n    \"FindPost\": [\n        {\n            \"id\": 1,\n            \"title\": \"This is Real\",\n            \"body\": \"The sky is blue\",\n            \"userId\": 1\n        },\n        {\n            \"id\": 2,\n            \"title\": \"The night is darker\",\n            \"body\": \"The sky is darkblue\",\n            \"userId\": 1\n        }\n    ]\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
