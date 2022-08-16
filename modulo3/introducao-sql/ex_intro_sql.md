@@ -5,22 +5,22 @@
 1. CRIANDO TABELA (CREATE TABLE)
 
 a) 
-CREATE TABLE nometabela (); : sintaxe
-VARCHAR: indica valor que suporta 255 caracteres.
-PRIMARY KEY: indica chave primária da tabela.
-FLOAT: indica valores com ponto flutuante.
-DATE: indica valor do tipo data.
-NOT NULL: determina que o valor não pode ser nulo.
+```sh
+-CREATE TABLE nometabela (); : sintaxe
+-VARCHAR: indica valor que suporta 255 caracteres.
+-PRIMARY KEY: indica chave primária da tabela.
+-FLOAT: indica valores com ponto flutuante.
+-DATE: indica valor do tipo data.
+-NOT NULL: determina que o valor não pode ser nulo.
+```
 
 b)
-SHOW DATABASES
-Exibe todos os bancos de dados existentes.
-SHOW TABLES
-Exibe todas as tabelas existentes em um determinado banco de dados.
+-SHOW DATABASE: exibe todos os bancos de dados existentes.
+SHOW TABLES: exibe todas as tabelas existentes em um determinado banco de dados.
 
 c) 
-DECRIBE Actor
-Exibe a estrutura detalhado dos campos e tipos da tabela Actor.
+DESCRIBE Actor
+Exibe a estrutura detalhada dos campos e tipos da tabela Actor.
 
 ### Exercício 02
 
@@ -65,6 +65,7 @@ b) Escreva uma query que retorne o salário do ator com o nome Tony Ramos
 SELECT  salary from Actor WHERE name = "Tony Ramos"
 ```
 c) Escreva uma query que retorne todas as informações que tenham o gender com o valor "invalid". Explique o resultado.
+Não retornou nenhum resultado pois não há campo com valor de gênero inválido.
 0 Row(s) returned 
 ```sh
 SELECT * from Actor WHERE gender = "invalid";
