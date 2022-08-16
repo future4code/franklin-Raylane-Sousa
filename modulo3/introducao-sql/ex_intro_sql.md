@@ -90,7 +90,7 @@ a) Explique a query:
 
 ```sh
 SELECT * FROM Actor
-WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000
+WHERE (name LIKE "%A%" OR name LIKE "%J%") AND salary > 300000
 ```
 - Selecione tudo da tabela Actor, onde o nome começa com A ou com J, e o salário maior que 300000.
 
@@ -98,7 +98,7 @@ b) Escreva uma query com os atores que não comecem com a letra "A" e tenham o s
 
 ```sh
 SELECT * FROM Actor
-WHERE (name NOT LIKE "A%") AND salary > 350000
+WHERE (name NOT LIKE "%A%") AND salary > 350000
 ```
 
 c) Escreva uma query com os atores que possuam "G" ou "g" em qualquer parte do nome. 
