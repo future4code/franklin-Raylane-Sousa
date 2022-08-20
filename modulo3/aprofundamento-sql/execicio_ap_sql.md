@@ -1,5 +1,5 @@
 # Exercício - Aula Aprofundamento SQL
-===============
+
 ```
 Para os exercícios de UPDATE e DELETE, o SQL exige que você desative os Safe Updates. Para fazer isso, rode o seguinte comando no seu Workbench: SET SQL_SAFE_UPDATES = 0;
 ```
@@ -157,6 +157,78 @@ UPDATE Movie SET playing_limit_date = "2021-12-20" WHERE id = "001"
 UPDATE Movie SET playing_limit_date = "2022-09-20" WHERE id = "003"
 ~~~
 
-d) Delete alguns dos filmes mas guarde o id. Tente fazer uma query para atualizar a sinopse desse filme que você acabou de deletar (usando o mesmo id). Anote o resultado e explique.
+d) Delete alguns dos filmes *mas guarde o id*. Tente fazer uma query para atualizar a sinopse desse filme que você acabou de deletar (usando o mesmo id). Anote o resultado e explique.
 
-DELETE FROM Movie WHERE id = "001"
+~~~sql
+DELETE FROM Movie WHERE id = "002"
+~~~
+
+~~~sql
+0 linha(s) afetada(s) Linhas correspondidas: 0 Alteradas: 0 Avisos: 0 0,204 seg
+UPDATE Movie SET synopsis = "Atualizar sinopse" WHERE id = "002"
+~~~
+
+
+# Desafios
+
+
+- 🏅 Desafios
+    - Exercício 7
+        
+        Agora para treinar as funções novamente, faça uma query para responder as perguntas abaixo:
+        
+        a) *Quantos filmes em cartaz possuem avaliações maiores do que `7.5`?*
+
+        ~~~sql
+        SELECT COUNT(*) FROM Movie WHERE evaluation > 7.5
+        ~~~
+        
+        b) *Qual a média das avaliações dos filmes?*
+        ~~~sql
+        SELECT AVG(evaluation)FROM Movie
+        ~~~
+        
+        c) *Qual a quantidade de filmes em cartaz?*
+       
+        ~~~sql
+        SELECT COUNT(*) FROM Movie WHERE playing_limit_date > CURRENT_TIMESTAMP
+        ~~~
+        
+        d) *Qual a quantidade de filmes que ainda irão lançar?*
+        ~~~sql
+        SELECT COUNT(*) FROM Movie WHERE release_Date > CURDATE()
+        ~~~
+        
+        e) *Qual a maior nota dos filmes?*
+        ~~~sql
+        SELECT MAX(evaluation) FROM Movie
+        ~~~
+
+        f) *Qual a menor nota dos filmes?*
+        ~~~sql
+        SELECT MIN(evaluation) FROM Movie
+        ~~~
+
+    - Exercício 8
+
+        Escreva **uma** query que:
+
+        a) *Retorne todos os filmes em ordem alfabética*
+        ~~~sql
+        SELECT * FROM Movie ORDER BY title;
+        ~~~
+
+        b) *Retorne os 5 primeiros filmes em ordem descrente alfabética*
+        ~~~sql
+        SELECT * FROM Movie ORDER BY title DESC LIMIT 5;
+        ~~~
+
+        c) *Retorne os 3 filmes mais recentes em cartaz*
+        ~~~sql
+        SELECT * FROM Movie WHERE playing_limit_date < CURDATE() ORDER BY release_Date LIMIT 3;
+        ~~~
+
+        d) *Retorne os 3 filmes melhor avalidos*
+        ~~~sql
+        SELECT * FROM Movie  ORDER BY evaluation DESC LIMIT 3;
+        ~~~
