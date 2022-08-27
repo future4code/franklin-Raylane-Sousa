@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import connection from "../connection"
+import connection from "../../connection"
 
 export const allUsers = async (): Promise<any> => {
      const result = await connection("TodoListUser") 

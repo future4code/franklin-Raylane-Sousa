@@ -1,14 +1,14 @@
 import app from "./app"
-import createTaskReq from "./endpoints/createTask"
-import createUserReq from "./endpoints/createUserReq"
-import getAllUsersReq from "./endpoints/getAllUsers"
+import createTaskReq from "./endpoints/tasks/createTask"
+import getAllUsersReq from "./endpoints/users/getAllUsers"
 import getMessageReq from "./endpoints/getMessageReq"
-import getTaskByIdReq from "./endpoints/getTaskById"
-import getTaskJoinUserReq from "./endpoints/getTaskJoinUser"
-import getUserByIdReq from "./endpoints/getUserById"
-import postRespTaskReq from "./endpoints/postRespTask"
-import queryUserByTermReq from "./endpoints/queryUserByTermReq"
-import updateUserReq from "./endpoints/updateUserById"
+import getTaskByIdReq from "./endpoints/tasks/getTaskById"
+import getTaskJoinUserReq from "./endpoints/tasks/getTaskJoinUser"
+import postRespTaskReq from "./endpoints/tasks/postRespTask"
+import createUserReq from "./endpoints/users/createUserReq"
+import queryUserByTermReq from "./endpoints/users/queryUserByTermReq"
+import getUserByIdReq from "./endpoints/users/getUserById"
+import updateUserReq from "./endpoints/users/updateUserById"
 
 
 //ENDPOINTS API

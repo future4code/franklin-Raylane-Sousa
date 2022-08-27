@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import connection from "../connection";
+import connection from "../../connection";
 
 const updateUser = async (id: any, name: string, nickname: string): Promise<any> => {
     await connection("TodoListUser")

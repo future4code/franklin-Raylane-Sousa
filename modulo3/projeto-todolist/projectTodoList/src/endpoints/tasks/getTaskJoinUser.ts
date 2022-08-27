@@ -1,6 +1,6 @@
 //ENDPOINT EM REFINAMENTO - ERRO DE TIPO
 import {Request, Response} from "express"
-import connection from "../connection";
+import connection from "../../connection";
 
 const taskJoinUser = async (id:string): Promise<any> => {
 

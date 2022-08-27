@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import connection from "../connection";
+import connection from "../../connection";
 
 //para atualizar body {id (tarefa, user_id(usuario que deseja atribuir a tarefa))}
 const respTask = async (user_id: number, id: number ): Promise<any> => {
