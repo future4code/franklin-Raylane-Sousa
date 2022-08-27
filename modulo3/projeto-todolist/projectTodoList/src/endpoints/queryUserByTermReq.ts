@@ -1,16 +1,17 @@
 import {Request, Response} from "express"
 import connection from "../connection";
 
-const userByTerm = async (string: string): Promise<any> => {
+const userByTerm = async (termo: string): Promise<any> => {
     const result = await connection.raw(`
-    SELECT * FROM TodoListUser WHERE nickname OR email LIKE "%${string}%"`);
+    SELECT tlu.id, tlu.nickname FROM TodoListUser tlu WHERE nickname OR email LIKE "%${termo}%"`);
   
     return result[0];
+
   };
 
 const queryUserByTermReq = async (req: Request, res: Response) => {
     try {
-       const result = await userByTerm(req.query.string as string)
+       const result = await userByTerm(req.query.termo as string)
         res.status(200).send(result)
 
     } catch (error) {

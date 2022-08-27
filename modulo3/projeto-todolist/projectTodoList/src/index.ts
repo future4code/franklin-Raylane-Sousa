@@ -13,11 +13,11 @@ import updateUserReq from "./endpoints/updateUserById"
 //ENDPOINTS API
 app.get("/message", getMessageReq ) //
 app.post("/user", createUserReq) //CRIAR UM USUÁRIO
-app.get("/user", queryUserByTermReq) //BUSCAR USUARIO PELO NOME --EM CONSTRUÇÃO--
+app.get("/user", queryUserByTermReq) //BUSCAR USUARIO PELO TERMO CONTIGO EM NICKNAME OU EMAIL
 app.get("/user/all", getAllUsersReq) //PEGAR TODOS OS USUARIOS
 app.get("/user/:id", getUserByIdReq) //PEGAR UM USUÁRIO PELO ID 
 app.put("/user/edit/:id", updateUserReq) //EDITAR UM USUÁRIO
-app.get("/taskjoin/:id", getTaskJoinUserReq ) // --EM CONSTRUÇÃO--
+app.get("/task", getTaskJoinUserReq ) // PEGAR TAREFAS CRIADAS POR UM USUARIO
 app.post("/task", createTaskReq ) //CRIAR TAREFA
 app.get("/task/:id", getTaskByIdReq) //PEGAR TAREFA PELO ID 
 
