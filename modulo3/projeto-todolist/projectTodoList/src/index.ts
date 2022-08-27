@@ -6,6 +6,7 @@ import getMessageReq from "./endpoints/getMessageReq"
 import getTaskByIdReq from "./endpoints/getTaskById"
 import getTaskJoinUserReq from "./endpoints/getTaskJoinUser"
 import getUserByIdReq from "./endpoints/getUserById"
+import postRespTaskReq from "./endpoints/postRespTask"
 import queryUserByTermReq from "./endpoints/queryUserByTermReq"
 import updateUserReq from "./endpoints/updateUserById"
 
@@ -13,13 +14,14 @@ import updateUserReq from "./endpoints/updateUserById"
 //ENDPOINTS API
 app.get("/message", getMessageReq ) //
 app.post("/user", createUserReq) //CRIAR UM USUÁRIO
-app.get("/user", queryUserByTermReq) //BUSCAR USUARIO PELO TERMO CONTIGO EM NICKNAME OU EMAIL
+app.get("/user", queryUserByTermReq) //BUSCAR USUARIO PELO TERMO CONTIDO EM NICKNAME OU EMAIL
 app.get("/user/all", getAllUsersReq) //PEGAR TODOS OS USUARIOS
 app.get("/user/:id", getUserByIdReq) //PEGAR UM USUÁRIO PELO ID 
 app.put("/user/edit/:id", updateUserReq) //EDITAR UM USUÁRIO
 app.get("/task", getTaskJoinUserReq ) // PEGAR TAREFAS CRIADAS POR UM USUARIO
 app.post("/task", createTaskReq ) //CRIAR TAREFA
 app.get("/task/:id", getTaskByIdReq) //PEGAR TAREFA PELO ID 
+app.post("/task/responsible", postRespTaskReq) //ATUALIZAR RESPONSAVEL PELA TAREFA
 
 
 

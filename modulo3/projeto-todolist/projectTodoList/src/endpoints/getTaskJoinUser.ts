@@ -20,7 +20,7 @@ const getTaskJoinUserReq = async (req: Request, res: Response) => {
     const id = req.query.id as string
        const result = await taskJoinUser(id)
        if (!result) {
-        res.status(501).send({message: "empty"})
+        res.status(501).send({message: "This user has no taks"})
        }
         res.status(200).send(result)
 
