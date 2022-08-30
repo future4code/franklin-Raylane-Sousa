@@ -41,6 +41,7 @@ class UserAccount {
 //01 b) crie uma instância dessa class
 
 const john = new UserAccount('053.111.584', 'John Doe', 22)
+const hayley = new UserAccount('054.112.585', 'Hayley Williams', 30)
 
 //GETTERS USERACCOUNT
 john.getInfo()
@@ -95,5 +96,10 @@ class Bank {
     this.accounts = accounts;
   }
 
+  getUsers():void {
+    return console.log(this.accounts)
+  }
 }
 
+const bblbn = new Bank([john, hayley])
+bblbn.getUsers()
