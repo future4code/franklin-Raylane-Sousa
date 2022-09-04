@@ -9,6 +9,7 @@ import { PlaceResidence } from "./polymorphism/places/PlaceResidence"
 import { PlaceIndustry } from "./polymorphism/places/PlaceIndustry"
 import { CommercialClient } from "./polymorphism/clients/CommercialClient"
 import { IndustryClient } from "./polymorphism/clients/IndustryClient"
+import { ClientManager } from "./polymorphism/clients/ClientManager"
 
 
 console.log("Hello, world!")
@@ -64,8 +65,8 @@ console.log(commerce01.getterFloorsQ())
 console.log(industry01.getCep())
 console.log(industry01.getterMachinesQ())
 
-//04
-
+//08
+const clientManager = new ClientManager()
 const ResClient001 = new ResidentialClient('Nara',12,120,'321654',2,'68180-000')
 const CommercialClient001 = new CommercialClient('Hayley',13,1200,'321654',3,'68180-001')
 const IndustryClient001 = new IndustryClient('Avril',14,15000,'321654',5,'68180-002')
@@ -76,3 +77,8 @@ console.log(IndustryClient001)
 console.log(`Sr(a) ${ResClient001.getName()} valor de sua conta de energia residencial é R$ ${ResClient001.calculateBill().toFixed(2)}`)
 console.log(`Sr(a) ${CommercialClient001.getName()} valor de sua conta de energia comercial é R$ ${CommercialClient001.calculateBill().toFixed(2)}`)
 console.log(`Sr(a) ${IndustryClient001.getName()} valor de sua conta de energia industrial é R$ ${IndustryClient001.calculateBill().toFixed(2)}`)
+
+console.log(clientManager.registerClient(ResClient001))
+console.log(clientManager.registerClient(CommercialClient001))
+console.log(clientManager.deleteUser(12))
+console.log(clientManager.getClientsQuantity())
