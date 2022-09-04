@@ -28,6 +28,27 @@ b) *Quantas vezes a mensagem `"Chamando o construtor da classe User"` foi impres
 - Para isso o ideal é utilizar protected.
 
 
+### Exercício 008
+
+a) *Crie uma instância da classe `Seller`. Você vai reparar que essa classe já possui um construtor, pois quando **não colocamos um construtor na classe filha**, ela **herda** o construtor da classe Pai. Quais parâmetros você teve que passar para esse construtor?*
+
+- Os parâmetros passados foram os mesmos da classe Pai 
+
+~~~
+const seller01 = new SellerLbn('001', 'user@email', 'Doe', '1222', 1200, admDate )
+console.log(seller01)
+~~~
+
+b) *Imprima todas as informações da instância que você criou individualmente (ou seja, cada uma em uma linha própria). O que você conseguiu imprimir? O que não conseguiu? Por quê?*
+
+- Foi possivel vizualizar apenas as informações que possuem um getter na classe herdada
+
+### Exercício 009
+
+a) Agora, teste o método setter, atualizando esse valor para o que você quiser. É possível imprimir no terminal o valor salesQuantity da instância que você criou? Por quê?
+
+-
+
 ## POLIMORFISMO
 
 ### Exercício 001

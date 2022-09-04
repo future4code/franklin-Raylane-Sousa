@@ -3,7 +3,7 @@ import { UserLbn } from "./UserLbn";
 export class EmployeeLbn extends UserLbn {
   protected baseSalary: number;
   protected admissionDate: Date;
-  protected bonus: number = 400;
+  static BONUS: number = 400;
 
   constructor(
     id: string,
@@ -23,7 +23,7 @@ export class EmployeeLbn extends UserLbn {
   }
 
   public calcTotalSalary(): number {
-    return this.baseSalary + this.bonus
+    return this.baseSalary + EmployeeLbn.BONUS
   }
 
   }

@@ -1,25 +1,22 @@
+import { EmployeeLbn } from "./EmployeeLbn";
 import { UserLbn } from "./UserLbn";
 
-export class SellerLbn extends UserLbn {
-    private sales: number;
+export class SellerLbn extends EmployeeLbn {
+     private sales: number = 0;
+     static SELL_COMISSION: number = 5
 
 
-    constructor(
-      id: string,
-      email: string,
-      name: string,
-      password: string,
-      sales: number
-    ) {
-      super(id, email, name, password);
-      this.sales = sales;
-    }
-
-    public getSales(): number {
+   /*  public getSales(): number {
         return this.sales
     }
+ */
+    public setSales(sales: number): void {
+      this.sales = sales
+    }
 
-    public comission(): number {
-        return (this.sales * 100) / 30
+    public calcTotalSalary(): number {
+        return (
+          this.baseSalary * EmployeeLbn.BONUS + SellerLbn.SELL_COMISSION * 5
+      )
     }
   }
