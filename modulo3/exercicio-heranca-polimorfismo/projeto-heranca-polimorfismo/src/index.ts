@@ -9,7 +9,10 @@ import { PlaceResidence } from "./polymorphism/places/PlaceResidence"
 import { PlaceIndustry } from "./polymorphism/places/PlaceIndustry"
 import { CommercialClient } from "./polymorphism/clients/CommercialClient"
 import { IndustryClient } from "./polymorphism/clients/IndustryClient"
+<<<<<<< HEAD
 import { ClientManager } from "./polymorphism/Manager"
+=======
+>>>>>>> 7a1c819d761bcd16ab5420fd2bb31f6ade421a11
 
 
 console.log("Hello, world!")
@@ -30,9 +33,12 @@ console.log(`Sr(a) ${employee01.getName()} calculo do seu Salário + Bonus é: $
 const seller01 = new SellerLbn('001', 'user@email', 'Doe', '1222', 10 )
 console.log("Comissão do usuário", seller01.comission().toFixed(2))
 
+<<<<<<< HEAD
 const manager = new ClientManager()
 console.log(manager.getClientsQuantity())
 
+=======
+>>>>>>> 7a1c819d761bcd16ab5420fd2bb31f6ade421a11
 //POLIMORFISMO 
 
 //objeto tipo InterfaceClientLbn
