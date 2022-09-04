@@ -28,4 +28,8 @@ export class UserLbn {
       public getName(): string {
           return this.name
       }
+//05
+      public interoduceYourself(): string {
+        return `Hello, I'm ${this.name}, it's good to see you here!`
+      }
   }

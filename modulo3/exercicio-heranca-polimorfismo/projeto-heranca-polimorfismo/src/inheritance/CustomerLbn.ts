@@ -9,14 +9,21 @@ export class CustomerLbn extends UserLbn {
       email: string,
       name: string,
       password: string,
-      creditCard: string
+      creditCard: string,
+      purchaseTotal: number
     ) {
       super(id, email, name, password);
       console.log("Chamando o construtor da classe Customer");
       this.creditCard = creditCard;
+      this.purchaseTotal = purchaseTotal;
     }
   
     public getCreditCard(): string {
       return this.creditCard;
     }
+
+    public getPurchase(): number {
+      return this.purchaseTotal;
+    }
+
   }
