@@ -9,25 +9,15 @@ export default async function createUser(
    res: Response
 ): Promise<void> {
    try {
-   // EXEMPLO 3
-   // Refatore o endpoint de cadastro para incluir um fluxo de autenticação. 
-   // Os requisitos são:
 
-   // O caminho deve ser "/user/signup"
-   //O usuário precisa escolher uma senha ao se cadastrar 
-   //(altere também a tabela de usuários)
-   // O usuário deve receber um identificador no padrão UUID
-   // A resposta deve ter um corpo contendo um token de autenticação
+      const { email, password } = req.body
 
-
-      const { name, nickname, email, password } = req.body
-
-      if (!name || !nickname || !email || !password) {
+      if ( !email || !password) {
          res.statusCode = 422
          throw new Error("Preencha os campos 'name','nickname', 'password' e 'email'")
       }
 
-      const [user] = await connection('to_do_list_users')
+      const [user] = await connection('UserLbn')
          .where({ email })
 
       if (user) {
@@ -35,14 +25,19 @@ export default async function createUser(
          throw new Error('Email já cadastrado')
       }
 
-      // agora utilizamos a classe IdGenerator() com o método
-      //generateId() para recuperar um UUID de 32 caracteres
+    if (!req.body.email || req.body.email.indexOf("@") === -1) {
+        throw new Error("Invalid email");
+      }
+  
+      if (!req.body.password || req.body.password.length < 6) {
+        throw new Error("Invalid password");
+      }
 
       const id: string = new IdGenerator().generateId()
 
-      const newUser: user = { id, name, nickname, email, password }
+      const newUser: user = { id, email, password }
 
-      await connection('to_do_list_users')
+      await connection('UserLbn')
          .insert(newUser)
 
       const payload: authenticationData = {

@@ -7,7 +7,7 @@ Por que ao gerar o id com UUID a composição possui letras, caracteres e numero
 
 b) A partir de hoje vamos tentar isolar, ao máximo, as nossas lógicas dentro de funções. Isso vai deixar nosso código mais organizado e aumentar a facilidade da manutenção e refatoração. Dado isso, crie uma função para gerar um id.
 
-~~~
+~~~typescript
 
 function generateId(): string {
     return v4();
@@ -18,7 +18,7 @@ function generateId(): string {
 # EXERCÍCIO 02 
 
 a) Explique o código com as suas palavras.
-~~~
+~~~typescript
 
  // VARIAVEL QUE RECEBE A TABELA "User"
 
@@ -75,3 +75,42 @@ const createUser = async (id: string, email: string, password: string) => {
       .into(userTableName);
   };
 ~~~
+
+# EXERCÍCIO 03
+
+a) O que a linha `as string` faz? Por que precisamos usar ela ali?
+
+~~~
+~~~
+
+b) Agora, crie a função que gere o token. Além disso, crie um type  para representar o input dessa função.
+
+~~~typescript
+class Authenticator {
+    generateToken = (payload: authenticationData) => {
+       return jwt.sign(
+            payload,
+            process.env.JWT_KEY as string, 
+            {
+                expiresIn: "5h"
+            }
+        )
+    }
+
+    getTokenData = (token: string) => {
+        const tokenData = jwt.verify(
+            token,  process.env.JWT_KEY as string, 
+        )
+
+        return tokenData
+    }
+}
+~~~
+
+# EXERCÍCIO 04
+
+a) Crie o endpoint que realize isso, com as funções que você implementou anteriormente
+
+b) Altere o seu endpoint para ele não aceitar um email vazio ou que não possua um `"@"`
+
+c) Altere o seu endpoint para ele só aceitar uma senha com 6 caracteres ou mais
