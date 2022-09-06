@@ -1,28 +1,13 @@
 import express, { Response, Request, response } from "express";
 import cors from "cors";
 import { labeAccountClient } from './database/db'
+import { clientAccount, clientExtract } from "./types";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-//VARIAVEIS TIPADAS
-type clientAccount = {
-    idClient: number,
-    name: string,
-    cpf: string,
-    birthDate: string,
-    valueA: number,
-    extract: Array<clientExtract>
-}
-
-type clientExtract = {
-    id: number,
-    value: number,
-    date: string,
-    description: string
-}
 
 //RETORNA TODAS AS INFORMAÇÕES DAS CONTAS
 app.get("/clients", (req:Request, res:Response) => {
@@ -40,19 +25,19 @@ res.status(200).send(extract);
 
 //CRIA CONTA || APENAS MAIOR DE 18 ANOS E COM CPF NÃO CADASTRADO
 app.post('/createaccount', (req: Request, res: Response) =>{
-    const {idClient, name, cpf, birthDate} = req.body
+    const { name, cpf, birthDate} = req.body
     const extract: clientExtract[] = []
-    const newLabeAccount: clientAccount = {idClient, name, cpf, birthDate, valueA: 0, extract}
+    const newLabeAccount: clientAccount = {name, cpf, birthDate, valueA: 0, extract}
     
     const dateBirth: Date = new Date(newLabeAccount.birthDate)
     const dateToday: Date = new Date();
-    /* calculo da idade */
+
     const olderAge: any = dateToday.getFullYear() - dateBirth.getFullYear()
-   /*  verfica o cpf */
+
     labeAccountClient.find((client: any) => {if (client.cpf === newLabeAccount.cpf) {
         res.status(400).send({ message: "O cliente ja possui cadastro!" })
     }})
-    /* verifica a idade */
+
     if (olderAge >= 18) {
         labeAccountClient.push(newLabeAccount) 
     } else {
