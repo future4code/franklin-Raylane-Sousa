@@ -65,6 +65,7 @@ CREATE TABLE UserLbn (
 c) Crie uma função para ser responsável pela criação de usuários no banco.
 
 ~~~typescript
+const userTableName: string = "UserLbn"
 const createUser = async (id: string, email: string, password: string) => {
     await connection
       .insert({
@@ -81,6 +82,8 @@ const createUser = async (id: string, email: string, password: string) => {
 a) O que a linha `as string` faz? Por que precisamos usar ela ali?
 
 ~~~
+Pega a senha como uma string. Utilizamos para evitar que ocorram erros de tipo no typescript.
+Com o As podemos definir o tipo do dado que vai vir na requisição.
 ~~~
 
 b) Agora, crie a função que gere o token. Além disso, crie um type  para representar o input dessa função.
@@ -105,12 +108,65 @@ class Authenticator {
         return tokenData
     }
 }
+
+ export type authenticationData = {
+    id: string
+ }
 ~~~
 
 # EXERCÍCIO 04
 
-a) Crie o endpoint que realize isso, com as funções que você implementou anteriormente
+a) Crie o endpoint que realize isso, com as funções que você implementou anteriormente.
+
+~~~typescript
+app.post('/user/signup', createUser)
+~~~
 
 b) Altere o seu endpoint para ele não aceitar um email vazio ou que não possua um `"@"`
 
+~~~typescript
+if (!req.body.email || req.body.email.indexOf("@") === -1) {
+        throw new Error("Invalid email");
+      }
+~~~
+
 c) Altere o seu endpoint para ele só aceitar uma senha com 6 caracteres ou mais
+
+~~~typescript
+ if (!req.body.password || req.body.password.length < 6) {
+        throw new Error("Invalid password");
+      }
+~~~
+
+# EXERCÍCIO 05
+
+a) Crie uma função que retorne as informações de um usuário a partir do email
+
+~~~typescript
+const userTableName = "UserLbn"
+const getUserByEmail = async(email: string): Promise<any> => {
+   const result = await connection
+     .select("*")
+     .from(userTableName)
+     .where({ email });
+
+   return result[0];
+  }
+~~~
+
+# EXERCÍCIO 06
+
+a) Crie o endpoint que realize isso, com as funções que você implementou anteriormente
+OK 
+b) Altere o seu endpoint para ele não aceitar um email vazio ou que não possua um `"@"`
+OK
+
+# EXERCÍCIO 07
+
+a) O que a linha `as any` faz? Por que precisamos usá-la ali?
+
+~~~
+Recebe o valor como qualquer(any) tipo
+~~~
+
+b) Crie uma função que realize a mesma funcionalidade da função acima

@@ -9,20 +9,10 @@ export default async function createUser(
 ): Promise<void> {
    try {
       
-      // Exemplo 5
-      // Transforme o endpoint de editar usuário em um endpoint 
-      // autenticado. Para isso, ele deve:
-
-      //Receber um token pelo cabeçalho da requisição 
-      //(não será mais necessário passar o id por path parameters)
-      //Editar os dados do usuário, caso o token seja válido, 
-      //ou devolver um erro, caso contrário 
-
-
-      const { name, nickname } = req.body
+      const { email } = req.body
       const token = req.headers.authorization as string
 
-      if (!name && !nickname) {
+      if (!email) {
          res.statusCode = 422
          res.statusMessage = "Informe o(s) novo(s) 'name' ou 'nickname'"
          throw new Error()
@@ -44,8 +34,8 @@ export default async function createUser(
       }
 
 
-      await connection('to_do_list_users')
-         .update({ name, nickname })
+      await connection('UserLbn')
+         .update({ email })
          .where({ id: tokenData.id })
 
       res.end()
@@ -53,7 +43,7 @@ export default async function createUser(
    } catch (error) {
 
       if (res.statusCode === 200) {
-         res.status(500).end()
+         res.status(500).send("Sucess!")
       }
 
       res.end()

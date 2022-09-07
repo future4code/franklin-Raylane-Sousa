@@ -4,17 +4,14 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-// EXEMPLO 2
-
-// Crie uma classe Authenticator, contendo os métodos generateToken e
-// getTokenData, para implementar, respectivamente, 
-// os métodos sign e verify do jwt.
-
 export default class Authenticator {
+    static getData(token: string) {
+        throw new Error("Method not implemented.")
+    }
     generateToken = (payload: authenticationData) => {
-       return jwt.sign(
+        return jwt.sign(
             payload,
-            process.env.JWT_KEY as string, 
+            process.env.JWT_KEY as string,
             {
                 expiresIn: "5h"
             }
@@ -23,9 +20,17 @@ export default class Authenticator {
 
     getTokenData = (token: string) => {
         const tokenData = jwt.verify(
-            token,  process.env.JWT_KEY as string, 
+            token, process.env.JWT_KEY as string,
         )
 
         return tokenData
     }
+
+    getData = (token: string): authenticationData => {
+        const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
+        const result = {
+            id: payload.id,
+        };
+        return result;
+    };
 }

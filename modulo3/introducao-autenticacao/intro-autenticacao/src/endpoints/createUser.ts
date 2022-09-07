@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import connection from "../connection";
+import { getUserByEmail } from "../data/getUserByEmail";
 import Authenticator from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 import { authenticationData, user } from "../types";
@@ -17,8 +18,7 @@ export default async function createUser(
          throw new Error("Preencha os campos 'name','nickname', 'password' e 'email'")
       }
 
-      const [user] = await connection('UserLbn')
-         .where({ email })
+      const user = await getUserByEmail(email)
 
       if (user) {
          res.statusCode = 409
