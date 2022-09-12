@@ -1,0 +1,38 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Andy Leia", 
+   "nickname": "Andy", 
+   "email": "andy@email.com" ,
+   "password": "ydna"
+}
+###
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "3@oscorp.com" ,
+   "password": "ihatepeter"
+}
+
+
+###
+
+@token = {{login.response.body.token}}
+
+PUT http://localhost:3003/user/edit
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+   "name": "NOME" 
+}
+
+###
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
