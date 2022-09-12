@@ -4,10 +4,11 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Andy Leia", 
-   "nickname": "Andy", 
-   "email": "andy@email.com" ,
-   "password": "ydna"
+   "name": "Admin", 
+   "nickname": "adm", 
+   "email": "admin@email.com" ,
+   "password": "3306@3306",
+   "role": "ADMIN"
 }
 ###
 # @name login
@@ -36,3 +37,6 @@ Content-Type: application/json
 ###
 GET http://localhost:3003/user/profile
 Authorization: {{token}}
+
+
+ALTER TABLE to_do_list_users ADD ENUM ("NORMAIL", "ADMIN") NOT NULL DEFAULT "NORMAL";

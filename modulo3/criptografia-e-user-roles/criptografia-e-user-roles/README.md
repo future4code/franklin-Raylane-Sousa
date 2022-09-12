@@ -16,7 +16,7 @@ a) *O que são os `round` e `salt`? Que valores são recomendados para o `round`
 a) *Para realizar os testes corretamente, qual deles você deve modificar primeiro? O cadastro ou o login? Justifique.*
 
 ~~~
-O primeiro endpoint modificado foi o de cadastro de usuário, pois nele ocorre o processo de criptografia da senha do usuário a ser armazenada no banco de dados. 
+O primeiro endpoint modificado foi o de cadastro de usuário, pois nele ocorre o processo em que o usuário fornece a senha e ela é criptografada e armazenada no banco de dados. Após isso, será modificado o endpoint de login, onde será realizada a comparação.
 
 ~~~
 
@@ -26,3 +26,25 @@ d) *No exercício de ontem, nós criamos o endpoint `user/profile`. Também temo
 Não pois o endpoint apenas utiliza o token para exibir as informações.
 
 ~~~
+
+______________________________________________________________________
+
+Autorização e User Roles
+Sign up:  irá receber um tipo e salvar no banco / usará o tipo para salvar no token
+Login: continuará recebendo e devolvendo a mesma coisa / usará o tipo apra salvar no token
+
+-Front deve informar um role("normal" ou "admin") no endpoint de cadastro
+-essa informacao deve ser guardada tanto no banco quando nos tokens gerados no cadastro e no login
+-Somente usuários Admin podem acessar o endpoint de editar usuário.
+
+## 03
+
+a) *Altere a sua tabela de usuários para ela possuir uma coluna `role`. Considere que pode assumir os valores `normal`  e `admin`. Coloque `normal` como valor padrão.*
+
+b) *Altere o type `AuthenticationData e a função getData()` para representarem esse novo tipo no token.*
+
+c) *Altere o cadastro para receber o tipo do usuário e criar o token com essa informação. (Não esqueça de adicionar na função query para inserir agora o valor de role do usuário à coluna role no banco)*
+
+d) *Altere o login para criar o token com o `role` do usuário*
+
+

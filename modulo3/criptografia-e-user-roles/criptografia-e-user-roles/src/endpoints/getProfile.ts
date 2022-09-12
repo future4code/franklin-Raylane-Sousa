@@ -10,6 +10,10 @@ export default async function getProfile(req: Request, res: Response){
         }
         const authenticator = new Authenticator()
         const data = authenticator.getData(token)
+
+        if (data.role !== "NORMAL") {
+            throw new Error("Only a normal user can access this funcionality")
+        }
         
         const userDB = new UserDatabase()
         const user = await userDB.getById(data.id)

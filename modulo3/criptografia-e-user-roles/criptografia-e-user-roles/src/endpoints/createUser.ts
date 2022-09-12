@@ -11,7 +11,7 @@ export default async function createUser(
 ): Promise<void> {
    try {
 
-      const { name, nickname, email, password } = req.body
+      const { name, nickname, email, password, role} = req.body
    
       if (!name || !nickname || !email || !password) {
          res.statusCode = 422
@@ -33,16 +33,16 @@ export default async function createUser(
       const hashManager = new HashManager()
       const hash = await hashManager.hash(password)
 
-      const newUser: user = { id, name, nickname, email, password: hash }
+      const newUser: user = { id, name, nickname, email, password: hash, role }
 
       await userDB.create(newUser)
 
 //AUTENTICAÇÃO COM JSONWEVTOKEN
       const authenticator = new Authenticator()
-      const token = authenticator.generateToken({id})
+      const token = authenticator.generateToken({id, role})
       
       const userReturn = {
-         id, name, nickname, email
+         id, name, nickname, email, role
       }
 
       res.status(201).send({ newUser: userReturn, token })

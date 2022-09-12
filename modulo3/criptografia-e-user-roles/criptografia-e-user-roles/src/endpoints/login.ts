@@ -11,6 +11,7 @@ export default async function login(req: Request, res: Response) {
         const user = await userDB.getByEmail(email)
 
         if(!user){
+            res.statusCode = 401
             throw new Error("Email ou senha incorreta")
         }
 
@@ -19,11 +20,12 @@ export default async function login(req: Request, res: Response) {
         const passwordIsCorrect: boolean = await hashManager.compare(password, user.password)
   
         if(!passwordIsCorrect){
+            res.statusCode = 401
             throw new Error("Email ou senha incorreta")
         }
 
         const authenticator = new Authenticator()
-        const token = authenticator.generateToken({id: user.id})
+        const token = authenticator.generateToken({id: user.id, role: user.role})
         res.send({token})
 
     } catch (error: any) {

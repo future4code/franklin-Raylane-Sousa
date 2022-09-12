@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
+import { userRole } from "../types";
 
 export default async function editUser(
    req: Request,
@@ -20,6 +21,15 @@ export default async function editUser(
       }
       const authenticator = new Authenticator()
       const data = authenticator.getData(token)
+      console.log(data) //retorna um id role iat
+
+      if (data.role != userRole.ADMIN) {
+         res.statusCode = 403
+         throw new Error()
+      }
+
+
+      
       
       const affectRows = await new UserDatabase().edit(data.id ,  {name, nickname})
 
