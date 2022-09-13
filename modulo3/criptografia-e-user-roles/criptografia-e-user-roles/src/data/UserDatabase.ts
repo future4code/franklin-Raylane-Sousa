@@ -24,4 +24,13 @@ export class UserDatabase extends BaseDatabase {
             .where({ id }) 
         return result 
     }
+
+    public deleteUser = async (id: string): Promise<any> => {
+        const result = await this.getConnection()
+            .delete()
+            .from('to_do_list_users')
+            .where({ id }) 
+        return result 
+    }
+
 }
