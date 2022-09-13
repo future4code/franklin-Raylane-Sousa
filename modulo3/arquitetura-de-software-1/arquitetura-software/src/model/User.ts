@@ -1,3 +1,4 @@
+//modelagem de entidades 
 export enum USER_ROLES {
     NORMAL = "NORMAL",
     ADMIN = "ADMIN"

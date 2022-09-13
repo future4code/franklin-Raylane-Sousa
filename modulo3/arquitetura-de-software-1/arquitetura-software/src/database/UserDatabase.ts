@@ -22,4 +22,18 @@ export default class UserDatabase extends BaseDatabase {
         await BaseDatabase.connection(UserDatabase.TABLE_USERS)
             .insert(userDB)
     }
+
+    public getByEmail = async (email: string): Promise<User> => {
+        const [result] = await BaseDatabase.connection(UserDatabase.TABLE_USERS)
+            .where({ email }) 
+        return result 
+    }
+
+    public getAll = async (): Promise<any> => {
+        const [result] = await BaseDatabase.connection()
+        .select("*")
+        .from(UserDatabase.TABLE_USERS)
+        return result 
+    }
+    
 }
