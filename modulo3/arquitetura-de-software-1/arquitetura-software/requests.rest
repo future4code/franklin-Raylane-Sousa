@@ -3,20 +3,29 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Jake",
-    "email": "jake@email.com",
+    "name": "Ralph",
+    "email": "ralph@email.com",
     "password": "123456"
+  
 }
 
 ### 2) Login
+# @name login
+
 POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "jake@email.com",
+    "email": "alana@email.com",
     "password": "123456"
 }
 
 ### 3) Get All
 GET http://localhost:3003/users
 Content-Type: application/json
+
+### 4) Delete User
+DELETE http://localhost:3003/users/7079b8e4-95cd-48aa-82a9-77454e94b789
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFmYmM4ODdkLTdkZWQtNDRjMC1hOGRjLTA2OGNhNGViMzViZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjMxOTQ4NzQsImV4cCI6MTY2MzI4MTI3NH0.CpQAJb-B3pMbXmDF_fQ4Plpki0SdCiOB67c7NL2GAno
+
+

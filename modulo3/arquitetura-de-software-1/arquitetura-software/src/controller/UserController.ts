@@ -3,6 +3,10 @@ import UserBusiness from "../business/UserBusiness";
 import UserDatabase from "../database/UserDatabase";
 
 export default class UserController {
+    constructor(
+        protected userBusiness: UserBusiness
+    ) {}
+
     public signup = async (req: Request, res: Response) => {
         try {
         //recebe requisição
@@ -12,8 +16,8 @@ export default class UserController {
                 password: req.body.password
             }
         //instância proxima camada
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.signup(input)
+    
+            const response = await this.userBusiness.signup(input)
 
         //devolve resposta   
             res.status(201).send(response)
@@ -28,23 +32,22 @@ export default class UserController {
 
     public login = async (req: Request, res: Response) => {
         try {
-
             const input: any = {
                 email: req.body.email,
                 password: req.body.password
             }
 
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.login(input)
- 
-            res.status(201).send(response)
-        } catch (error: unknown) {
+            const response = await this.userBusiness.login(input)
+
+            res.status(200).send(response)
+        } catch (error) {
             console.log(error)
+            
             if (error instanceof Error) {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado"})
+            res.status(500).send({ message: "Erro inesperado" })
         }
     }
 
@@ -62,6 +65,27 @@ export default class UserController {
             }
 
             res.status(500).send({ message: "Erro inesperado"})
+        }
+    }
+
+    public deleteUser = async (req: Request, res: Response) => {
+        try {
+            const input: any = {
+                token: req.headers.authorization,
+                idToDelete: req.params.id
+            }
+
+            const response = await this.userBusiness.deleteUser(input)
+
+            res.status(200).send(response)
+        } catch (error) {
+            console.log(error)
+            
+            if (error instanceof Error) {
+                return res.status(400).send({ message: error.message })
+            }
+
+            res.status(500).send({ message: "Erro inesperado" })
         }
     }
 }
