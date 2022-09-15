@@ -1,11 +1,11 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { User, USER_ROLES } from "../models/User"
+import { InLoginDTO, InSignupDTO, OutSignupDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
 
 export class UserBusiness {
-    public signup = async (input: any) => {
+    public signup = async (input: InSignupDTO) => {
         const name = input.name
         const email = input.email
         const password = input.password
@@ -61,7 +61,7 @@ export class UserBusiness {
         const authenticator = new Authenticator()
         const token = authenticator.generateToken(payload)
 
-        const response = {
+        const response: OutSignupDTO = {
             message: "Cadastro realizado com sucesso",
             token
         }
@@ -69,7 +69,7 @@ export class UserBusiness {
         return response
     }
 
-    public login = async (input: any) => {
+    public login = async (input: InLoginDTO) => {
         const email = input.email
         const password = input.password
 

@@ -60,3 +60,19 @@ export class User {
         this.role = newRole
     }
 }
+
+export interface InSignupDTO {
+    name: string,
+    email: string,
+    password: string
+}
+
+export interface OutSignupDTO {
+    message: string,
+    token: string
+}
+
+export interface InLoginDTO {
+    email: string,
+    password: string
+}
