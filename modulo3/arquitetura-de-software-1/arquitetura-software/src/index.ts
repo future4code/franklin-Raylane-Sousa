@@ -27,7 +27,7 @@ const userController = new UserController(
 app.get("/users", userController.getAllUsers)
 app.post("/users/signup", userController.signup)
 app.post("/users/login", userController.login)
-/* app.delete("/users/:id", userController.login) */
+app.delete("/users/:id", userController.deleteUser)
 
 
 app.listen(process.env.PORT || 3003, () => {
