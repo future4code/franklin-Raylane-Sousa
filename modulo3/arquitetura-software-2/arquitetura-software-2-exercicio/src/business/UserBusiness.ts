@@ -1,5 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { InLoginDTO, InSignupDTO, OutSignupDTO, User, USER_ROLES } from "../models/User"
+import { InGetUsersDBDTO, InGetUsersDTO, InLoginDTO, InSignupDTO, OutSignupDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -127,7 +127,7 @@ export class UserBusiness {
         return response
     }
 
-    public getUsers = async (input: any) => {
+    public getUsers = async (input: InGetUsersDTO) => {
         const token = input.token
         const search = input.search || ""
         const order = input.order || "name"
@@ -137,14 +137,18 @@ export class UserBusiness {
 
         const offset = limit * (page - 1)
 
+        if(!token) {
+            throw new Error("Token faltando!")
+        }
+
         const authenticator = new Authenticator()
         const payload = authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Token inválido ou faltando")
+            throw new Error("Token inválido!")
         }
 
-        const getUsersInputDB: any = {
+        const getUsersInputDB: InGetUsersDBDTO = {
             search,
             order,
             sort,

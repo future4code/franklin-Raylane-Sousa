@@ -8,8 +8,8 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Beltrano",
-    "email": "beltrano2@gmail.com",
+    "name": "Beltrano2",
+    "email": "beltrano22@gmail.com",
     "password": "abc123"
 }
 
@@ -30,7 +30,7 @@ GET http://localhost:3003/users
 Authorization: {{token}}
 
 ### 3) Delete user
-DELETE http://localhost:3003/users/b67c6ee5-c06b-470f-8470-71803e17e509
+DELETE http://localhost:3003/users/97a0ea0c-96ce-4b13-aeb4-9a1b2640ecb2
 Authorization: {{token}}
 
 ### 4) Edit user

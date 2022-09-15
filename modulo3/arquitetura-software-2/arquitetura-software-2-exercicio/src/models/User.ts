@@ -18,7 +18,7 @@ export class User {
         private email: string,
         private password: string,
         private role: USER_ROLES
-    ) {}
+    ) { }
 
     public getId = () => {
         return this.id
@@ -75,4 +75,21 @@ export interface OutSignupDTO {
 export interface InLoginDTO {
     email: string,
     password: string
+}
+
+export interface InGetUsersDTO {
+    token: string | undefined,
+    search: string,
+    order: string,
+    sort: string,
+    limit: string,
+    page: string
+}
+
+export interface InGetUsersDBDTO {
+    search: string,
+    order: string,
+    sort: string,
+    limit: number,
+    offset: number
 }

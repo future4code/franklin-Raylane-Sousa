@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { InLoginDTO, InSignupDTO } from "../models/User";
+import { InGetUsersDTO, InLoginDTO, InSignupDTO } from "../models/User";
 
 export class UserController {
     public signup = async (req: Request, res: Response) => {
@@ -50,7 +50,7 @@ export class UserController {
 
     public getUsers = async (req: Request, res: Response) => {
         try {
-            const input: any = {
+            const input: InGetUsersDTO = {
                 token: req.headers.authorization,
                 search: req.query.search as string,
                 order: req.query.order as string,
