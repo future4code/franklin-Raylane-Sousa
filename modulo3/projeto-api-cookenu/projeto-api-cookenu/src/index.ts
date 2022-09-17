@@ -14,4 +14,4 @@ app.listen(process.env.PORT || 3003, () => {
 })
 
 app.use("/users", userRouter)
-app.use("/recipes")
+/* app.use("/recipes") */
