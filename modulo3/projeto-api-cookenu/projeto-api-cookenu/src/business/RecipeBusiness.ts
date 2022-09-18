@@ -1,7 +1,6 @@
 import { RecipeDatabase } from "../database/RecipeDataBase"
 import { UserCookDatabase } from "../database/UserCookDatabase"
 import { InGetRecipesDBDTO, InGetRecipesDTO, Recipe } from "../models/Recipe"
-import { InGetUsersDBDTO, InGetUsersDTO, InLoginDTO, InSignupDTO, OutSignupDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -22,19 +21,19 @@ export class RecipeBusiness {
         const created = input.created
 
         if (!title || !description || !prepare) {
-            throw new Error("Um ou mais parâmetros faltando")
+            throw new Error("One or more parameters doesn't exist")
         }
 
-        if (typeof title !== "string" || title.length < 3) {
-            throw new Error("Parâmetro 'name' inválido")
+        if (typeof title !== "string" || title.length < 5) {
+            throw new Error("Invalid parameter 'title'!")
         }
 
         if (typeof description !== "string" || description.length < 3) {
-            throw new Error("Parâmetro 'email' inválido")
+            throw new Error("Invalid parameter 'description'!")
         }
 
         if (typeof prepare !== "string" || prepare.length < 3) {
-            throw new Error("Parâmetro 'password' inválido")
+            throw new Error("Invalid parameter 'prepare'")
         }
 
 
@@ -53,7 +52,7 @@ export class RecipeBusiness {
 
         
         const response: any = {
-            message: "Receita criada com sucesso!",
+            message: "Recipe created sucessfully!",
             id,
             title,
             description,
@@ -121,7 +120,7 @@ export class RecipeBusiness {
         const recipe = await this.recipeDatabase.findById(id)
 
         if (!id) {
-            throw new Error("O usuário não existe!")
+            throw new Error("Recipe doesn't exist!")
         }
 
         const Response = {

@@ -19,29 +19,25 @@ export class UserBusiness {
         const password = input.password
 
         if (!name || !email || !password) {
-            throw new Error("Um ou mais parâmetros faltando")
+            throw new Error("One or more parameters doesn't exist")
         }
 
         if (typeof name !== "string" || name.length < 3) {
-            throw new Error("Parâmetro 'name' inválido")
-        }
-
-        if (typeof email !== "string" || email.length < 3) {
-            throw new Error("Parâmetro 'email' inválido")
+            throw new Error("Invalid parameter 'name'!")
         }
 
         if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-            throw new Error("Parâmetro 'email' inválido")
+            throw new Error("Invalid parameter 'email'!")
         }
 
         if (typeof password !== "string" || password.length < 6) {
-            throw new Error("Parâmetro 'password' inválido")
+            throw new Error("Invalid parameter 'password'!")
         }
 
         const userDB = await this.userDatabase.findByEmail(email)
 
         if (userDB) {
-            throw new Error("E-mail já cadastrado")
+            throw new Error("Email already exists")
         }
 
         const id = this.idGenerator.generate()
@@ -65,7 +61,7 @@ export class UserBusiness {
         const token = this.authenticator.generateToken(payload)
 
         const response: OutSignupDTO = {
-            message: "Cadastro realizado com sucesso",
+            message: "Registration created successfully",
             token
         }
 
@@ -77,25 +73,25 @@ export class UserBusiness {
         const password = input.password
 
         if (!email || !password) {
-            throw new Error("Um ou mais parâmetros faltando")
+            throw new Error("One or more parameters doesn't exist")
         }
 
         if (typeof email !== "string" || email.length < 3) {
-            throw new Error("Parâmetro 'email' inválido")
+            throw new Error("Invalid parameter 'email'!")
         }
 
         if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-            throw new Error("Parâmetro 'email' inválido")
+            throw new Error("Invalid parameter 'email'!")
         }
 
         if (typeof password !== "string" || password.length < 3) {
-            throw new Error("Parâmetro 'password' inválido")
+            throw new Error("Invalid parameter 'password'!")
         }
 
         const userDB = await this.userDatabase.findByEmail(email)
 
         if (!userDB) {
-            throw new Error("E-mail não cadastrado")
+            throw new Error("Email doesn't exists")
         }
 
         const user = new User(
@@ -109,7 +105,7 @@ export class UserBusiness {
         const isPasswordCorrect = await this.hashManager.compare(password, user.getPassword())
 
         if (!isPasswordCorrect) {
-            throw new Error("Senha incorreta")
+            throw new Error("Incorrect password")
         }
 
         const payload: ITokenPayload = {
@@ -121,7 +117,7 @@ export class UserBusiness {
         const token = authenticator.generateToken(payload)
 
         const response = {
-            message: "Login realizado com sucesso",
+            message: "Login successfully",
             token
         }
 
@@ -139,14 +135,14 @@ export class UserBusiness {
         const offset = limit * (page - 1)
 
         if(!token) {
-            throw new Error("Token faltando!")
+            throw new Error("Missing token")
         }
 
         const authenticator = new Authenticator()
         const payload = authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Token inválido!")
+            throw new Error("Invalid Token!")
         }
 
         const getUsersInputDB: InGetUsersDBDTO = {
@@ -192,11 +188,11 @@ export class UserBusiness {
         const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Token inválido ou faltando")
+            throw new Error("Invalid or missing token")
         }
 
         if (payload.role !== USER_ROLES.ADMIN) {
-            throw new Error("Apenas admins podem deletar usuários")
+            throw new Error("Only admins can delete users")
         }
 
         if (payload.id === idToDelete) {
@@ -232,7 +228,7 @@ export class UserBusiness {
         }
 
         if (!email && !name && !password) {
-            throw new Error("Parâmetros faltando")
+            throw new Error("One or more parameters doesn't exist")
         }
 
       

@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { RecipeBusiness } from "../business/RecipeBusiness";
-import { InGetRecipesDTO } from "../models/Recipe";
-import { InGetUsersDTO, InLoginDTO, InSignupDTO, User } from "../models/User";
 
 export class RecipeController {
     constructor (
@@ -26,7 +24,7 @@ export class RecipeController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error" })
         }
     }
 
@@ -51,7 +49,7 @@ export class RecipeController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error" })
         }
     }
 
@@ -72,7 +70,7 @@ export class RecipeController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error" })
         }
     }
 }

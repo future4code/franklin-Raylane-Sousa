@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS RecipeCook (
     title VARCHAR(255) NOT NULL,
     description VARCHAR(300) NOT NULL DEFAULT "This is a new recipe for you to learn and feed yourself",
     prepare TEXT(500) NOT NULL,
-    created DATE NOT NULL
+    created DATE NOT NULL DEFAULT (CURRENT_DATE())
 );
 
 

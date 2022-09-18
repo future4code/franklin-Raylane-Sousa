@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { InGetUsersDTO, InLoginDTO, InSignupDTO, User } from "../models/User";
+import { InGetUsersDTO, InLoginDTO, InSignupDTO } from "../models/User";
 
 export class UserController {
     constructor (
@@ -25,7 +25,7 @@ export class UserController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error" })
         }
     }
 
@@ -46,7 +46,7 @@ export class UserController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error" })
         }
     }
 
@@ -71,7 +71,7 @@ export class UserController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error" })
         }
     }
 
@@ -92,7 +92,7 @@ export class UserController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error"})
         }
     }
 
@@ -116,7 +116,7 @@ export class UserController {
                 return res.status(400).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado" })
+            res.status(500).send({ message: "Unexpected error" })
         }
     }
 

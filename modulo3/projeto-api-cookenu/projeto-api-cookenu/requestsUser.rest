@@ -29,12 +29,11 @@ GET http://localhost:3003/users/profile
 Authorization: {{token}}
 
 ### GET USER BY ID
-@token = {{login.response.body.token}}
 GET http://localhost:3003/users/bb9b7ee8-ae4b-4bd1-9bd6-e7e21594399b
 Authorization: {{token}}
 
 ### GET ALL USERS
-@token = {{login.response.body.token}}
+
 GET http://localhost:3003/users
 Authorization: {{token}}
 
