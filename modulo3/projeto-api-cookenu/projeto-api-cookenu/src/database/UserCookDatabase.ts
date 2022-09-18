@@ -1,12 +1,12 @@
 import { InGetUsersDBDTO, IUserDB, User } from "../models/User"
 import { BaseDatabase } from "./BaseDatabase"
 
-export class UserDatabase extends BaseDatabase {
+export class UserCookDatabase extends BaseDatabase {
     public static TABLE_USERS = "UserCook"
 
     public findByEmail = async (email: string) => {
         const usersDB: IUserDB[] = await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
+            .connection(UserCookDatabase.TABLE_USERS)
             .select()
             .where({ email })
 
@@ -23,7 +23,7 @@ export class UserDatabase extends BaseDatabase {
         }
 
         await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
+            .connection(UserCookDatabase.TABLE_USERS)
             .insert(userDB)
     }
 
@@ -35,7 +35,7 @@ export class UserDatabase extends BaseDatabase {
         const offset = input.offset
 
         const usersDB: IUserDB[] = await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
+            .connection(UserCookDatabase.TABLE_USERS)
             .select()
             .where("name", "LIKE", `%${search}%`)
             .orderBy(order, sort)
@@ -47,7 +47,7 @@ export class UserDatabase extends BaseDatabase {
 
     public findById = async (id: string) => {
         const usersDB: IUserDB[] = await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
+            .connection(UserCookDatabase.TABLE_USERS)
             .select()
             .where({ id })
 
@@ -56,7 +56,7 @@ export class UserDatabase extends BaseDatabase {
 
     public deleteUser = async (id: string) => {
         await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
+            .connection(UserCookDatabase.TABLE_USERS)
             .delete()
             .where({ id })
     }
@@ -71,7 +71,7 @@ export class UserDatabase extends BaseDatabase {
         }
         
         await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
+            .connection(UserCookDatabase.TABLE_USERS)
             .update(userDB)
             .where({ id: userDB.id })
     }

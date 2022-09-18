@@ -1,3 +1,4 @@
+import { RecipeDB } from "../../models/Recipe"
 import { IUserDB, USER_ROLES } from "../../models/User"
 
 export const users: IUserDB[] = [
@@ -13,13 +14,6 @@ export const users: IUserDB[] = [
         name: "Fulano",
         email: "fulano@gmail.com",
         password: "$2a$12$PULtVNlAll87D6E8pR/0HO9vbzVDPaUMA89rc5cNmYoAAepbwmkcO", // qwerty00
-        role: USER_ROLES.NORMAL
-    },
-    {
-        id: "7079b8e4-95cd-48aa-82a9-77454e94b789",
-        name: "Ciclana",
-        email: "ciclana@gmail.com",
-        password: "$2a$12$LkWMqS3oPhP2iVMcZOVvWer9ahUPulxjB0EA4TWPxWaRuEEfYGu/i", // asdfg123
         role: USER_ROLES.NORMAL
     }
 ]

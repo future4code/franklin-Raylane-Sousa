@@ -1,5 +1,6 @@
 import { BaseDatabase } from "../BaseDatabase"
-import { UserDatabase } from "../UserDatabase"
+import { RecipeDatabase } from "../RecipeDataBase"
+import { UserCookDatabase } from "../UserCookDatabase"
 import { users } from "./data"
 
 class Migrations extends BaseDatabase {
@@ -9,9 +10,9 @@ class Migrations extends BaseDatabase {
             await this.createTables()
             console.log("Tables created successfully.")
 
-            console.log("Populating tables...")
-            await this.insertData()
-            console.log("Tables populated successfully.")
+            console.log("Populating table users...")
+            await this.insertUsers()
+            console.log("Table users populated successfully.")
 
             console.log("Migrations completed.")
         } catch (error: any) {
@@ -26,21 +27,30 @@ class Migrations extends BaseDatabase {
 
     createTables = async () => {
         await BaseDatabase.connection.raw(`
-        DROP TABLE IF EXISTS ${UserDatabase.TABLE_USERS};
+        DROP TABLE IF EXISTS ${UserCookDatabase.TABLE_USERS};
+        DROP TABLE IF EXISTS ${RecipeDatabase.TABLE_RECIPE};
         
-        CREATE TABLE IF NOT EXISTS ${UserDatabase.TABLE_USERS}(
+        CREATE TABLE IF NOT EXISTS ${UserCookDatabase.TABLE_USERS}(
             id VARCHAR(255) PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL,
             role ENUM("NORMAL", "ADMIN") DEFAULT "NORMAL" NOT NULL
         );
+
+        CREATE TABLE IF NOT EXISTS ${RecipeDatabase.TABLE_RECIPE} (
+            id VARCHAR(255) PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            description VARCHAR(300) NOT NULL DEFAULT "This is a new recipe for you to learn and feed yourself",
+            prepare TEXT(500) NOT NULL,
+            created DATE NOT NULL
+        );
         `)
     }
 
-    insertData = async () => {
+    insertUsers = async () => {
         await BaseDatabase
-            .connection(UserDatabase.TABLE_USERS)
+            .connection(UserCookDatabase.TABLE_USERS)
             .insert(users)
     }
 }

@@ -1,0 +1,21 @@
+### ENDPOINTS RECIPES
+
+### CREATE RECIPE
+# @name create
+
+POST http://localhost:3003/recipes/create
+Content-Type: application/json
+
+{
+    "title": "Vatapá de Frango",
+    "description": "Vatapá é um prato típico da culinária afro-brasileira. O seu preparo pode incluir pão molhado ou farinha de rosca, fubá, gengibre, pimenta-malagueta, amendoim, cravo, castanha de caju, leite desnatado, azeite de oliva, cebola, alho e tomate.",
+    "prepare": "Em uma tigela, coloque o pão e regue com o leite de coco até umedecer bem. Transfira para o copo do liquidificador, junte a água e bata até obter um creme homogêneo. Retire e reserve."
+}
+
+### GET ALL RECIPES
+GET http://localhost:3003/recipes/all
+Content-Type: application/json
+
+### GET RECIPE BY ID
+GET http://localhost:3003/recipes/bae4a797-5e0e-42f3-b451-8c8c3e5fd313
+Content-Type: application/json

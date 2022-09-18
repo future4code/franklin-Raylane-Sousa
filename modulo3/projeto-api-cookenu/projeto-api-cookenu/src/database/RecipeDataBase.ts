@@ -37,7 +37,7 @@ export class RecipeDatabase extends BaseDatabase {
         const recipesDB: RecipeDB[] = await BaseDatabase
             .connection(RecipeDatabase.TABLE_RECIPE)
             .select()
-            .where("name", "LIKE", `%${search}%`)
+            .where("title", "LIKE", `%${search}%`)
             .orderBy(order, sort)
             .limit(limit)
             .offset(offset)

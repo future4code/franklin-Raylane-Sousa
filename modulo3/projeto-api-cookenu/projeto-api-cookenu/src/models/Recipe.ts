@@ -6,12 +6,22 @@ export interface RecipeDB {
     created: Date
 }
 
+
 export interface InGetRecipesDBDTO {
     search: string,
     order: string,
     sort: string,
     limit: number,
     offset: number
+}
+
+export interface InGetRecipesDTO {
+    token: string | undefined
+    search: string,
+    order: string,
+    sort: string,
+    limit: string,
+    page: string
 }
 
 export class Recipe {

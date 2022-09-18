@@ -119,4 +119,45 @@ export class UserController {
             res.status(500).send({ message: "Erro inesperado" })
         }
     }
+
+    public getYourProfile = async (req: Request, res: Response) => {
+        try {
+            const input: any = {
+                token: req.headers.authorization
+            }
+
+            const response = await this.userBusiness.getYourProfile(input)
+
+            res.status(200).send(response)
+        } catch (error) {
+            console.log(error)
+            
+            if (error instanceof Error) {
+                return res.status(400).send({ message: error.message })
+            }
+
+            res.status(500).send({ message: "Erro inesperado" })
+        }
+    }
+
+    public getUserByID = async (req: Request, res: Response) => {
+        try {
+            const input: any = {
+                token: req.headers.authorization,
+                id:  req.params.id
+            }
+
+            const response = await this.userBusiness.getUserById(input)
+
+            res.status(200).send(response)
+        } catch (error) {
+            console.log(error)
+            
+            if (error instanceof Error) {
+                return res.status(400).send({ message: error.message })
+            }
+
+            res.status(500).send({ message: "Erro inesperado" })
+        }
+    }
 }

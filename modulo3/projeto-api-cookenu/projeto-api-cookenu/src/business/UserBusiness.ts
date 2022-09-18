@@ -1,4 +1,4 @@
-import { UserDatabase } from "../database/UserDatabase"
+import { UserCookDatabase } from "../database/UserCookDatabase"
 import { InGetUsersDBDTO, InGetUsersDTO, InLoginDTO, InSignupDTO, OutSignupDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -7,7 +7,7 @@ import { IdGenerator } from "../services/IdGenerator"
 
 export class UserBusiness {
     constructor(
-        protected userDatabase: UserDatabase,
+        protected userDatabase: UserCookDatabase,
         protected idGenerator: IdGenerator,
         protected hashManager: HashManager,
         protected authenticator: Authenticator
@@ -34,7 +34,7 @@ export class UserBusiness {
             throw new Error("Parâmetro 'email' inválido")
         }
 
-        if (typeof password !== "string" || password.length < 3) {
+        if (typeof password !== "string" || password.length < 6) {
             throw new Error("Parâmetro 'password' inválido")
         }
 
@@ -157,7 +157,7 @@ export class UserBusiness {
             offset
         }
 
-        const userDatabase = new UserDatabase()
+        const userDatabase = new UserCookDatabase()
         const usersDB = await userDatabase.getUsers(getUsersInputDB)
 
         const users = usersDB.map(userDB => {
@@ -298,4 +298,61 @@ export class UserBusiness {
 
         return response
     }
+
+    public getYourProfile = async (input: any) => {
+
+        const token = input.token
+      
+        if(!token) {
+            throw new Error("Token faltando!")
+        }
+
+        const authenticator = new Authenticator()
+        const payload = authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Token inválido!")
+        }
+
+        const user = await this.userDatabase.findById(payload.id)
+
+            const Response = {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            }
+
+            return Response
+        }
+
+        public getUserById = async (input: any) => {
+
+            const token = input.token
+            const id = input.id
+          
+            if(!token) {
+                throw new Error("Token faltando!")
+            }
+    
+            const payload = this.authenticator.getTokenPayload(token)
+    
+            if (!payload) {
+                throw new Error("Token inválido!")
+            }
+    
+            const user = await this.userDatabase.findById(id)
+
+            if (!id) {
+                throw new Error("O usuário não existe!")
+            }
+    
+                const Response = {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email
+                }
+    
+                return Response
+            }
+
 }

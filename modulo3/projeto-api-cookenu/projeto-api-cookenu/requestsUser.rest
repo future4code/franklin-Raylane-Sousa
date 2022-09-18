@@ -1,0 +1,53 @@
+### ENDPOINTS USER
+GET http://localhost:3003/ping
+
+### SIGNUP
+# @name signup
+
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Beltrano2",
+    "email": "beltrano22@gmail.com",
+    "password": "abc123"
+}
+
+### LOGIN
+# @name login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "beltrano22@gmail.com",
+    "password": "abc123"
+}
+
+### GET PROFILE
+@token = {{login.response.body.token}}
+GET http://localhost:3003/users/profile
+Authorization: {{token}}
+
+### GET USER BY ID
+@token = {{login.response.body.token}}
+GET http://localhost:3003/users/bb9b7ee8-ae4b-4bd1-9bd6-e7e21594399b
+Authorization: {{token}}
+
+### GET ALL USERS
+@token = {{login.response.body.token}}
+GET http://localhost:3003/users
+Authorization: {{token}}
+
+### DELETE USER BY ID
+DELETE http://localhost:3003/users/a5ab4c8c-1ad7-470e-bfba-c5eed5f0b292
+Authorization: {{token}}
+
+### EDIT USER BY ID
+PUT http://localhost:3003/users/f03017bb-2c08-4cdc-bb63-7fbd7cebe01f
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "email": "jane@gmail.com"
+}
