@@ -15,25 +15,25 @@ export class RecipeBusiness {
     ) { }
 
     public createRecipe = async (input: any) => {
+        const token = input.token
         const title = input.title
         const description = input.description
         const prepare = input.prepare
         const created = input.created
 
+        if(!token) {
+            throw new Error("Missing token")
+        }
+
+        const authenticator = new Authenticator()
+        const payload = authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Invalid Token!")
+        }
+
         if (!title || !description || !prepare) {
             throw new Error("One or more parameters doesn't exist")
-        }
-
-        if (typeof title !== "string" || title.length < 5) {
-            throw new Error("Invalid parameter 'title'!")
-        }
-
-        if (typeof description !== "string" || description.length < 3) {
-            throw new Error("Invalid parameter 'description'!")
-        }
-
-        if (typeof prepare !== "string" || prepare.length < 3) {
-            throw new Error("Invalid parameter 'prepare'")
         }
 
 
@@ -94,15 +94,14 @@ export class RecipeBusiness {
                 recipeDB.created
             )
 
-            const userResponse: any = {
+            const recipeResponse: any = {
                 id: recipe.getId(),
                 title: recipe.getTitle(),
                 description: recipe.getDescription(),
-                prepare: recipe.getPrepareMode(),
                 created: recipe.getCreated()
             }
 
-            return userResponse
+            return recipeResponse
         })
 
         const response: any = {
@@ -114,8 +113,20 @@ export class RecipeBusiness {
 
 
     public getRecipeById = async (input: any) => {
-
+        const token = input.token
         const id = input.id
+
+        if(!token) {
+            throw new Error("Missing token")
+        }
+
+        const authenticator = new Authenticator()
+        const payload = authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Invalid Token!")
+        }
+
 
         const recipe = await this.recipeDatabase.findById(id)
 
@@ -125,10 +136,9 @@ export class RecipeBusiness {
 
         const Response = {
             id: recipe.id,
-            name: recipe.title,
+            title: recipe.title,
             description: recipe.description,
-            prepare: recipe.description,
-            created: recipe.description
+            created: recipe.created
         }
 
         return Response
