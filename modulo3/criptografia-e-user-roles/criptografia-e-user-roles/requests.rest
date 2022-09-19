@@ -40,7 +40,7 @@ Authorization: {{token}}
 
 ###
 
-DELETE http://localhost:3003/user/a47da31c-e956-4931-8538-57c918b6ae81
+DELETE http://localhost:3003/user/03a2c415-a80e-4b91-94b0-464f0b628a3f
 Authorization: {{token}}
 
 ALTER TABLE to_do_list_users ADD ENUM ("NORMAIL", "ADMIN") NOT NULL DEFAULT "NORMAL";
