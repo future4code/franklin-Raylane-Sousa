@@ -16,8 +16,9 @@ export default async function deleteUser(req: Request, res: Response){
             throw new Error("Only a admin user can access this funcionality")
         }
         
+        const id = req.params.id
         const userDB = new UserDatabase()
-        const user = await userDB.deleteUser(data.id)
+        const user = await userDB.deleteUser(id)
 
         res.send({message: 'Deleted'})
 
