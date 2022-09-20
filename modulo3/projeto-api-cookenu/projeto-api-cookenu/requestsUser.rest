@@ -19,8 +19,8 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "beltrano22@gmail.com",
-    "password": "abc123"
+    "email": "astrodev@gmail.com",
+    "password": "bananinha"
 }
 
 ### GET PROFILE
@@ -38,7 +38,7 @@ GET http://localhost:3003/users
 Authorization: {{token}}
 
 ### DELETE USER BY ID
-DELETE http://localhost:3003/users/a5ab4c8c-1ad7-470e-bfba-c5eed5f0b292
+DELETE http://localhost:3003/users/2a2ad6cc-08cd-49cb-b4ac-45bf3cfff8b4
 Authorization: {{token}}
 
 ### EDIT USER BY ID
@@ -47,6 +47,6 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "Jane Doe",
+    "name": "Janete Doe",
     "email": "jane@gmail.com"
 }

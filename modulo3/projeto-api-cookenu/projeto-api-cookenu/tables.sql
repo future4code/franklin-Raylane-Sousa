@@ -21,10 +21,12 @@ CREATE TABLE IF NOT EXISTS FollowUsers (
     user_id VARCHAR(255),
     follower_id VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES UserCook(id),
+    FOREIGN KEY (follower_id) REFERENCES UserCook(id)
 );
 
-CREATE TABLE IF NOT EXISTS FollowUsers (
+CREATE TABLE IF NOT EXISTS UserRecipeRelation(
     user_id VARCHAR(255),
-    follower_id VARCHAR(255),
+    recipe_id VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES UserCook(id),
+    FOREIGN KEY (recipe_id) REFERENCES RecipeCook(id)
 );

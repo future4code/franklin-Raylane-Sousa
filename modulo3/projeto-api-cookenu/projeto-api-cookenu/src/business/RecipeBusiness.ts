@@ -144,4 +144,82 @@ export class RecipeBusiness {
         return Response
     }
 
+    public deleteRecipe = async (input: any) => {
+        const token = input.token
+        const id = input.id
+
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Invalid or missing token")
+        }
+
+        const userDB = await this.recipeDatabase.findById(id)
+
+        if (!userDB) {
+            throw new Error("User to be deleted not found")
+        }
+
+        await this.recipeDatabase.deleteRecipe(id)
+
+        const response = {
+            message: "Recipe deleted successfully "
+        }
+
+        return response
+    }
+
+    public editRecipe = async (input: any) => {
+        const {
+            token,
+            id,
+            title,
+            description,
+            prepare
+        } = input
+
+        if (!token) {
+            throw new Error("Missing token")
+        }
+
+        if (!title && !description && !prepare) {
+            throw new Error("One or more parameters doesn't exist")
+        }
+
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Invalid token!")
+        }
+
+        
+        const recipeDB = await this.recipeDatabase.findById(id)
+
+        if (!recipeDB) {
+            throw new Error("Account to be edited does not exist")
+        }
+
+        const recipe = new Recipe(
+            recipeDB.id,
+            recipeDB.title,
+            recipeDB.description,
+            recipeDB.prepare,
+            recipeDB.created
+        )
+
+        title && recipe.setTitle(title)
+        description && recipe.setDesc(description)
+        prepare && recipe.setPrepare(prepare)
+
+        await this.recipeDatabase.editRecipe(recipe)
+
+        const response = {
+            message: "Update recipe successfully"
+        }
+
+        return response
+    }
+
+
+
 }

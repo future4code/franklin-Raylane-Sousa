@@ -75,4 +75,49 @@ export class RecipeController {
             res.status(500).send({ message: "Unexpected error" })
         }
     }
+
+    public deleteRecipe = async (req: Request, res: Response) => {
+        try {
+            const input: any = {
+                token: req.headers.authorization,
+                id: req.params.id
+            }
+
+            const response = await this.recipeBusiness.deleteRecipe(input)
+
+            res.status(200).send(response)
+        } catch (error) {
+            console.log(error)
+            
+            if (error instanceof Error) {
+                return res.status(400).send({ message: error.message })
+            }
+
+            res.status(500).send({ message: "Unexpected error"})
+        }
+    }
+
+     public editRecipe = async (req: Request, res: Response) => {
+        try {
+            const input: any = {
+                token: req.headers.authorization,
+                id: req.params.id,
+                title: req.body.title,
+                description: req.body.description,
+                prepare: req.body.prepare
+            }
+
+            const response = await this.recipeBusiness.editRecipe(input)
+
+            res.status(200).send(response)
+        } catch (error) {
+            console.log(error)
+            
+            if (error instanceof Error) {
+                return res.status(400).send({ message: error.message })
+            }
+
+            res.status(500).send({ message: "Unexpected error" })
+        }
+    }
 }

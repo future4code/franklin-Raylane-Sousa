@@ -1,7 +1,7 @@
 ### ENDPOINTS RECIPES
 
 ### CREATE RECIPE
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVkZjQ2MDBkLWMxYjItNGQ3NC1hZGEyLWU0ZWFhYjU0NzI4YiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM1MTUwNjgsImV4cCI6MTY2MzYwMTQ2OH0.XB06mKpUmn6pBI7h6YG_UyCk1SquJX2uGDxPUtmzOXA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzY4NTg2NywiZXhwIjoxNjYzNzcyMjY3fQ.hIQAl4grTNfaNud8Oweeqk4kMnkLYI3XnAB5dx97FG8
 # @name create
 
 POST http://localhost:3003/recipes/create
@@ -22,3 +22,18 @@ Content-Type: application/json
 GET http://localhost:3003/recipes/bae4a797-5e0e-42f3-b451-8c8c3e5fd313
 Authorization: {{token}}
 Content-Type: application/json
+
+### UPDATE RECIPE BY ID
+PUT http://localhost:3003/recipes/8c36e054-fdf5-42e0-82b6-f8c9a9c7de85
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "title": "Café",
+    "description": "Um café sempre é uma boa ideia.",
+    "prepare": "Coloque a água para ferver e faça o café."
+}
+
+### DELETE RECIPE BY ID
+DELETE http://localhost:3003/recipes/4f331b3b-038a-4cf2-93b8-bc346165a2bd
+Authorization: {{token}}

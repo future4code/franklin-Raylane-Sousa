@@ -20,4 +20,6 @@ const recipeController = new RecipeController(
 recipeRouter.get("/feed", recipeController.getAllRecipes)
 recipeRouter.get("/:id", recipeController.getRecipeByID)
 recipeRouter.post("/create", recipeController.createRecipe)
+recipeRouter.put("/:id", recipeController.editRecipe)
+recipeRouter.delete("/:id", recipeController.deleteRecipe)
 

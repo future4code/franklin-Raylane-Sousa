@@ -131,15 +131,13 @@ export class UserBusiness {
         const sort = input.sort || "ASC"
         const limit = Number(input.limit) || 10
         const page = Number(input.page) || 1
-
         const offset = limit * (page - 1)
 
         if(!token) {
             throw new Error("Missing token")
         }
 
-        const authenticator = new Authenticator()
-        const payload = authenticator.getTokenPayload(token)
+        const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
             throw new Error("Invalid Token!")
@@ -153,8 +151,8 @@ export class UserBusiness {
             offset
         }
 
-        const userDatabase = new UserCookDatabase()
-        const usersDB = await userDatabase.getUsers(getUsersInputDB)
+
+        const usersDB = await this.userDatabase.getUsers(getUsersInputDB)
 
         const users = usersDB.map(userDB => {
             const user = new User(
@@ -196,19 +194,19 @@ export class UserBusiness {
         }
 
         if (payload.id === idToDelete) {
-            throw new Error("Não é possível deletar a própria conta")
+            throw new Error("Unable to delete own account")
         }
 
         const userDB = await this.userDatabase.findById(idToDelete)
 
         if (!userDB) {
-            throw new Error("Usuário a ser deletado não encontrado")
+            throw new Error("User to be deleted not found")
         }
 
         await this.userDatabase.deleteUser(idToDelete)
 
         const response = {
-            message: "Usuário deletado com sucesso"
+            message: "Deleted successfully "
         }
 
         return response
@@ -224,7 +222,7 @@ export class UserBusiness {
         } = input
 
         if (!token) {
-            throw new Error("Token faltando")
+            throw new Error("Missing token")
         }
 
         if (!email && !name && !password) {
@@ -235,43 +233,40 @@ export class UserBusiness {
         const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Token inválido")
+            throw new Error("Invalid token!")
         }
 
         if (email && typeof email !== "string") {
-            throw new Error("Parâmetro 'email' inválido")
+            throw new Error("Invalid parameter 'email'!")
         }
 
         if (email && !email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-            throw new Error("Parâmetro 'email' inválido")
+            throw new Error("Invalid parameter 'email'!")
         }
 
         if (name && typeof name !== "string") {
-            throw new Error("Parâmetro 'name' inválido")
+            throw new Error("Invalid parameter 'name'!")
         }
 
-        if (name && name.length < 3) {
-            throw new Error("Parâmetro 'name' inválido")
-        }
 
         if (password && typeof password !== "string") {
-            throw new Error("Parâmetro 'password' inválido")
+            throw new Error("Invalid parameter 'password'!")
         }
 
         if (password && password.length < 6) {
-            throw new Error("Parâmetro 'password' inválido")
+            throw new Error("Invalid parameter 'password'!")
         }
 
         if (payload.role === USER_ROLES.NORMAL) {
             if (payload.id !== idToEdit) {
-                throw new Error("Usuários normais só podem editar a própria conta")
+                throw new Error("Normal users can only edit their own account")
             }
         }
 
         const userDB = await this.userDatabase.findById(idToEdit)
 
         if (!userDB) {
-            throw new Error("Conta a ser editada não existe")
+            throw new Error("Account to be edited does not exist")
         }
 
         const user = new User(
@@ -289,7 +284,7 @@ export class UserBusiness {
         await this.userDatabase.editUser(user)
 
         const response = {
-            message: "Edição realizada com sucesso"
+            message: "Update done successfully"
         }
 
         return response
@@ -300,14 +295,14 @@ export class UserBusiness {
         const token = input.token
       
         if(!token) {
-            throw new Error("Token faltando!")
+            throw new Error("Invalid token!")
         }
 
         const authenticator = new Authenticator()
         const payload = authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Token inválido!")
+            throw new Error("Invalid token!")
         }
 
         const user = await this.userDatabase.findById(payload.id)
@@ -327,19 +322,19 @@ export class UserBusiness {
             const id = input.id
           
             if(!token) {
-                throw new Error("Token faltando!")
+                throw new Error("Invalid token!")
             }
     
             const payload = this.authenticator.getTokenPayload(token)
     
             if (!payload) {
-                throw new Error("Token inválido!")
+                throw new Error("Invalid token!")
             }
     
             const user = await this.userDatabase.findById(id)
 
             if (!id) {
-                throw new Error("O usuário não existe!")
+                throw new Error("The user doesn't exist!")
             }
     
                 const Response = {
