@@ -95,4 +95,5 @@ describe("Testing the 'verifyAge' function", () => {
         expect(result.brazilians.unallowedUsers).toEqual(["Maria", "Maria"]);
         expect(result.americans.allowedUsers).toEqual(["Marry", "Marry",]);
     });
+
 })
