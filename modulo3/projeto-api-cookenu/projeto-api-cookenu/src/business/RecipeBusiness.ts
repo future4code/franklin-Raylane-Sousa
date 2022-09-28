@@ -1,4 +1,4 @@
-import { RecipeDatabase } from "../database/RecipeDataBase"
+import { RecipeDatabase } from "../database/RecipeDatabase"
 import { UserCookDatabase } from "../database/UserCookDatabase"
 import { InGetRecipesDBDTO, InGetRecipesDTO, Recipe } from "../models/Recipe"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"

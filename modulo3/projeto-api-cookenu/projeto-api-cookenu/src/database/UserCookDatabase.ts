@@ -1,8 +1,9 @@
-import { InGetUsersDBDTO, IUserDB, User } from "../models/User"
+import { InGetUsersDBDTO, IUserDB, IUserFollowDB, User, UserFollow } from "../models/User"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class UserCookDatabase extends BaseDatabase {
     public static TABLE_USERS = "UserCook"
+    public static TABLE_FOLLOW = "FollowUsersCook"
 
     public findByEmail = async (email: string) => {
         const usersDB: IUserDB[] = await BaseDatabase
@@ -75,4 +76,16 @@ export class UserCookDatabase extends BaseDatabase {
             .update(userDB)
             .where({ id: userDB.id })
     }
+
+    public followUser = async (user: UserFollow) => {
+        const followed: IUserFollowDB = {
+            id: user.getId(),
+            id_followed: user.getIdFollowed()
+        }
+
+        await BaseDatabase
+            .connection(UserCookDatabase.TABLE_FOLLOW)
+            .insert(followed)
+    }
+
 }

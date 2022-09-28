@@ -11,6 +11,12 @@ export interface IUserDB {
     role: USER_ROLES
 }
 
+export interface IUserFollowDB {
+    id: string,
+    id_followed: string
+}
+
+
 export class User {
     constructor(
         private id: string,
@@ -92,4 +98,30 @@ export interface InGetUsersDBDTO {
     sort: string,
     limit: number,
     offset: number
+}
+
+export class UserFollow {
+    constructor(
+        private id: string,
+        private id_followed: string
+    ) { }
+
+    public getId = () => {
+        return this.id
+    }
+
+    public getIdFollowed = () => {
+        return this.id_followed
+    }
+    
+    public setId = (newId: string) => {
+        this.id = newId
+    }
+
+    public setIdFollowed = (new_Id: string) => {
+         this.id_followed = new_Id
+    }
+
+   
+
 }

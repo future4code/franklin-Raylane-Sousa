@@ -346,4 +346,8 @@ export class UserBusiness {
                 return Response
             }
 
+            public followUserById = async (input: any) => {
+                
+            }
+
 }

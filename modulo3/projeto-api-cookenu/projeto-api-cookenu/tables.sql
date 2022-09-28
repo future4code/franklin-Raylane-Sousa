@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS RecipeCook (
 
 
 /* In progress */
-CREATE TABLE IF NOT EXISTS FollowUsers (
+CREATE TABLE IF NOT EXISTS FollowUsersCook (
     user_id VARCHAR(255),
     follower_id VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES UserCook(id),
