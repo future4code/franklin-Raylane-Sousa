@@ -1,0 +1,67 @@
+### LOGIN
+# @name login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "hayley@email.com",
+    "password": "yesparamore"
+}
+
+### CREATE PRODUCT
+@token = {{login.response.body.token}}
+POST http://localhost:3003/products/create
+Content-Type: application/json
+Authorization: {{token}}
+
+{   
+    "id": "024",
+    "name": "CAMISA PRETA",
+    "tag_id": "03"
+}
+
+### GET ALL PRODUCTS
+GET http://localhost:3003/products/
+Content-Type: application/json
+
+### GET ALL TAGS
+GET http://localhost:3003/products/tags
+Content-Type: application/json
+
+### GET PRODUCT BY TAG
+GET http://localhost:3003/products/search?tag=Balada
+Content-Type: application/json
+
+### GET PRODUCT BY ID
+GET http://localhost:3003/products/011
+Content-Type: application/json
+
+
+### CREATE USER
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Candice",
+    "email": "candice@email.com",
+    "password": "123456"
+}
+
+### GET ALL USERS
+@token = {{login.response.body.token}}
+GET http://localhost:3003/users
+Content-Type: application/json
+Authorization: {{token}}
+
+### DELETE USER (Admin)
+DELETE http://localhost:3003/users/f03017bb-2c08-4cdc-bb63-7fbd7cebe01f
+Authorization: {{token}}
+
+### UPDATE USER (Admins | Normal users only can update their own data)
+PUT http://localhost:3003/users/f03017bb-2c08-4cdc-bb63-7fbd7cebe01f
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "JaKe"
+}
