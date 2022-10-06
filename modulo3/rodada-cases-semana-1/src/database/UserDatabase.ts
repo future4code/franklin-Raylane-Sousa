@@ -4,7 +4,7 @@ import { BaseDatabase } from "./BaseDatabase"
 export class UserDatabase extends BaseDatabase {
     public static TABLE_USERS = "AmaroUser"
 
-    public findByEmail = async (email: string) => {
+    public findByEmail = async (email: string): Promise<IUserDB | undefined>=> {
         const usersDB: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
             .select()
@@ -27,7 +27,7 @@ export class UserDatabase extends BaseDatabase {
             .insert(userDB)
     }
 
-    public getUsers = async (input: IGetUsersInputDBDTO) => {
+     public getUsers = async (input: IGetUsersInputDBDTO): Promise<IUserDB[]> => {
         const search = input.search
         const order = input.order
         const sort = input.sort
@@ -43,9 +43,9 @@ export class UserDatabase extends BaseDatabase {
             .offset(offset)
         
         return usersDB
-    }
+    } 
 
-    public findById = async (id: string) => {
+    public findById = async (id: string):Promise<IUserDB | undefined>  => {
         const usersDB: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
             .select()

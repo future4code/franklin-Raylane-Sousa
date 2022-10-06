@@ -4,8 +4,8 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "hayley@email.com",
-    "password": "yesparamore"
+    "email": "jane@email.com",
+    "password": "bananinha"
 }
 
 ### CREATE PRODUCT

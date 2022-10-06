@@ -3,6 +3,7 @@ import { ProductBusiness } from "../business/ProductBusiness";
 import { CreateInputDTO, ProductsInputDTO } from "../models/Product";
 
 export class ProductController {
+    static createProduct: any;
     constructor(
         protected productBusiness: ProductBusiness
     ) {}

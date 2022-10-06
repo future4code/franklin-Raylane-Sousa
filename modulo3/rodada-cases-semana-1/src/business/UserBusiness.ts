@@ -1,5 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { IGetUsersInputDBDTO, IGetUsersInputDTO, ISignupInputDTO, ISignupOutputDTO, ISLoginInputDTO, User, USER_ROLES } from "../models/User"
+import { IGetUsersInputDBDTO, IGetUsersInputDTO, ISignupInputDTO, ISignupOutputDTO, ISLoginInputDTO, IUserDB, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -25,7 +25,7 @@ export class UserBusiness {
             throw new Error("Invalid parameter 'email'")
         }
 
-        if (typeof password !== "string" || password.length < 3) {
+        if (typeof password !== "string" || password.length <= 4) {
             throw new Error("Invalid parameter 'password'")
         }
 
@@ -68,10 +68,6 @@ export class UserBusiness {
 
         if (!email || !password) {
             throw new Error("Parameters missing")
-        }
-
-        if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-            throw new Error("Invalid parameter 'email' ")
         }
 
         const userDB = await this.userDatabase.findByEmail(email)
@@ -136,7 +132,7 @@ export class UserBusiness {
             offset
         }
 
-        const usersDB = await this.userDatabase.getUsers(getUsersInputDB)
+        const usersDB: IUserDB[] = await this.userDatabase.getUsers(getUsersInputDB)
 
         const users = usersDB.map(userDB => {
             const user = new User(
