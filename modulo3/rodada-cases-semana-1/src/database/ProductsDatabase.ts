@@ -18,7 +18,7 @@ export class ProductsDatabase extends BaseDatabase {
             .insert(newProductDB)
     }
 
-    public getAllProducts = async (input: ProductsInputDBDTO) => {
+    public getAllProducts = async (input: ProductsInputDBDTO): Promise<any> => {
         const search = input.search
         const order = input.order
         const sort = input.sort
@@ -36,7 +36,7 @@ export class ProductsDatabase extends BaseDatabase {
         return productDB
     }
 
-    public findById = async (id: string) => {
+    public findById = async (id: string): Promise<any>  => {
         const productDB: ProductDB[] = await BaseDatabase
             .connection(ProductsDatabase.TABLE_PRODUCTS)
             .select()
@@ -45,7 +45,7 @@ export class ProductsDatabase extends BaseDatabase {
         return productDB[0]
     }
 
-    public findByName = async (name: string) => {
+    public findByName = async (name: string): Promise<any> => {
         const productsDB: ProductDB[] = await BaseDatabase
             .connection(ProductsDatabase.TABLE_PRODUCTS)
             .select()
@@ -56,7 +56,7 @@ export class ProductsDatabase extends BaseDatabase {
 
     public getProductsNameTag = async (tag: string) => {
         const productsDB: any[] = await BaseDatabase
-            .connection.raw(`SELECT apr.id, apr.name as Produto, atag.name as Tag FROM AmaroProducts AS apr LEFT JOIN AmaroTags AS atag ON apr.tag_id = atag.id 
+            .connection.raw(`SELECT apr.id as Id, apr.name as Product, atag.name as Tag FROM AmaroProducts AS apr LEFT JOIN AmaroTags AS atag ON apr.tag_id = atag.id 
             WHERE atag.name = '${tag}'`)
         return productsDB[0]
     }
@@ -81,7 +81,7 @@ export class ProductsDatabase extends BaseDatabase {
             .where({ id: productDB.id })
     }
 
-    public getAllTags = async (input: ProductsInputDBDTO) => {
+    public getAllTags = async (input: ProductsInputDBDTO): Promise<any> => {
         const search = input.search
         const order = input.order
         const sort = input.sort

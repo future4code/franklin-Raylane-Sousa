@@ -1,5 +1,5 @@
 import { ProductsDatabase } from "../database/ProductsDatabase"
-import { CreateInputDTO, CreateOutputDTO, Product, ProductsInputDBDTO, ProductsInputDTO, Tag } from "../models/Product"
+import { CreateInputDTO, CreateOutputDTO, Product, ProductDB, ProductsInputDBDTO, ProductsInputDTO, Tag } from "../models/Product"
 import { Authenticator } from "../services/Authenticator"
 
 export class ProductBusiness {
@@ -21,14 +21,14 @@ export class ProductBusiness {
         const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Invalid or missing token")
+            throw new Error("Invalid token")
         }
 
-        if (!name || !tag_id) {
+        if (!id || !name || !tag_id) {
             throw new Error("One or more parameters missing")
         }
 
-        if (typeof name !== "string" || name.length < 3) {
+        if (typeof name !== "string" || name.length <= 3) {
             throw new Error("Invalid 'name' parameter")
         }
 
@@ -47,7 +47,7 @@ export class ProductBusiness {
         await this.productDatabase.createProduct(product)
 
         const response: CreateOutputDTO = {
-            message: "Product registration successful",
+            message: "Product registration created successfully",
         }
 
         return response
@@ -95,7 +95,7 @@ export class ProductBusiness {
             offset
         }
 
-        const productDB = await this.productDatabase.getAllProducts(getProducts)
+        const productDB: ProductDB[] = await this.productDatabase.getAllProducts(getProducts)
 
         const products = productDB.map(pr => {
             const prod = new Product(
@@ -148,7 +148,7 @@ export class ProductBusiness {
             offset
         }
 
-        const productDB = await this.productDatabase.getAllTags(getTags)
+        const productDB: ProductDB[] = await this.productDatabase.getAllTags(getTags)
 
         const tags = productDB.map(pr => {
             const prod = new Tag(
