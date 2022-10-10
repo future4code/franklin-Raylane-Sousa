@@ -1,4 +1,4 @@
-import { BaseDatabase } from "../src/database/BaseDatabase"
+import { BaseDatabase } from "../../../src/database/BaseDatabase"
 
 
 describe("Testing database connection", () =>{

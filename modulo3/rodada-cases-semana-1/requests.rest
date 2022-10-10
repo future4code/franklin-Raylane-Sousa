@@ -29,11 +29,12 @@ GET http://localhost:3003/products/tags
 Content-Type: application/json
 
 ### GET PRODUCT BY TAG
-GET http://localhost:3003/products/search?tag=Balada
+GET http://localhost:3003/products/search?tag=Neutro
+
 Content-Type: application/json
 
 ### GET PRODUCT BY ID
-GET http://localhost:3003/products/011
+GET http://localhost:3003/products/012
 Content-Type: application/json
 
 

@@ -1,5 +1,5 @@
 import { UserBusiness } from "../../src/business/UserBusiness"
-import { ISLoginInputDTO } from "../../src/models/User"
+import { IGetUsersInputDBDTO, IGetUsersInputDTO, ISLoginInputDTO, USER_ROLES } from "../../src/models/User"
 import { UserDatabaseMock } from "../mocks/database/UserDatabaseMock"
 import { AuthenticatorMock } from "../mocks/services/AuthenticatorMock"
 import { HashManagerMock } from "../mocks/services/HashManagerMock"
@@ -90,6 +90,32 @@ describe("Testing 'UserBusiness' Login cases", () => {
            expect(error.message).toEqual("Incorrect password")
            }
        })
+
+       test("should return users list", async () => {
+        const input: IGetUsersInputDTO  = {
+            token: "token-jane",
+            search: "*",
+            order: "desc",
+            sort: "5", 
+            limit: "100", 
+            page: "1"
+        }
+
+        const result = await userBusiness.getUsers(input)
+
+        expect(result).toEqual([
+            {
+                id: "bb9b7ee8-ae4b-4bd1-9bd6-e7e21594399b",
+                name: "Jane",
+                email: "fulano@gmail.com"
+            },
+            {
+                id: "f03017bb-2c08-4cdc-bb63-7fbd7cebe01f",
+                name: "Fulano",
+                email: "jane@email.com"
+            }
+        ])
+    })
 
 
 })

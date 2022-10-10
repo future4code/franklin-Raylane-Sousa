@@ -30,7 +30,9 @@ npm run migrations
 
 ## Autenticação
 
+```
 Token JWT - jsonwebtoken 
+```
 
 ## Endpoints
 
@@ -69,3 +71,32 @@ Token JWT - jsonwebtoken
     "test:coverage": "jest --coverage"
   }
 ~~~
+
+### Database
+- [x] - Conexão com banco de dados
+
+### User
+
+Casos de sucesso
+- [X] - Criar um usuário
+- [X] - Fazer login
+
+Casos de erro ao criar um usuário:
+- [X] - Passando um parâmetro vazio 
+- [X] - Com o formato de e-mail incorreto.
+- [X] - Quando o e-mail já existe.
+- [X] - Quando a senha possui parâmetro inválido.
+- [X] - Com o e-mail vazio
+- [X] - Com e-mail não registrado
+- [X] - Com a senha incorreta
+
+### Product
+Casos de sucesso ao criar um produto
+- [X] - Criar um produto com sucesso
+
+Casos de erro ao criar um produto:
+- [X] - Sem passar o token
+- [X]-  Com o token incorreto
+- [X] - Com o id vazio
+- [X] - Com o id existente
+- [X] - Com um nome inválido

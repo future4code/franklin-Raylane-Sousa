@@ -18,7 +18,6 @@ describe("Testing 'ProductBusiness', cases of creating products", () => {
         }
 
         const result = await productBusiness.createProduct(newProduct)
-
         expect(result.message).toEqual("Product registration created successfully")
 
     })
