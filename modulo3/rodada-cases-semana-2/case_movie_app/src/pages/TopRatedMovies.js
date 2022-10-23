@@ -1,24 +1,23 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/moviecard/MovieCard";
+import api from "../services/api";
 import './MoviesGrid.css'
 
 const API_KEY = process.env.REACT_APP_API_KEY
-const BASE_URL = process.env.REACT_APP_API;
 
 const TopRatedMovies = () => {
 const [topMovies, setTopMovies] = useState([]);
 
-const getMoviesTop = async (url) => {
-    const res = await fetch(url)
-    const data = await res.json() 
-
-    setTopMovies(data.results)
+const takeTopMovies = () => {
+  api.get(`movie/top_rated?${API_KEY}`)
+  .then((res)=> {
+    setTopMovies(res.data.results)
+  }).catch((error)=>{
+    console.log(error.code)
+  })
 }
 
-useEffect(() =>{
-    const movieTopUrl =`${BASE_URL}top_rated?${API_KEY}`
-    getMoviesTop(movieTopUrl)
-  }, [])
+useEffect(takeTopMovies, [])
 
   return (
       <div className="container">

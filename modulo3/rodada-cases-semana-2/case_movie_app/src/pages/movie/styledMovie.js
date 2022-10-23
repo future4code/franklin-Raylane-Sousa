@@ -1,10 +1,47 @@
-.moviePage {
+import styled from "styled-components";
+
+export const MovieCardS = styled.div`
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 2rem auto;
+`
+export const Trailer = styled.div`
+    min-height: 400px;
+    max-width: max-content;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+`
+export const TrailerTitle = styled.h2`
+    font-size: 3rem;
+    margin: 0;
+`
+export const Content = styled.div`
+    max-width: 70%;
+    padding-bottom: 3rem;
+    margin-left: 1rem ;
+`
+
+export const Button = styled.button`
+    background-color: #0F1014;
+    color: white;
+    outline: none;
+    border: 1px solid white;
+    padding: 0.5rem 0.5rem;
+`
+
+/* .moviePage {
     color: #fff;
     display: flex;
     flex-direction: column;
     max-width: 600px;
     margin: 2rem auto;
 }
+
 
 .moviePage svg {
     font-size: 1.5rem;
@@ -55,3 +92,4 @@
 .description p { 
     line-height: 1.4rem;
 }
+ */

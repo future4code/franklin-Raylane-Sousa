@@ -1,7 +1,8 @@
 import {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom';
 import React from 'react'
-import{MdOutlineMovieFilter, MdOutlineSavedSearch} from 'react-icons/md'
+import{MdOutlineSavedSearch} from 'react-icons/md'
+import{BsCollectionPlayFill} from 'react-icons/bs'
 import './HeaderStyled.js'
 import { FormButton, FormNavbar, InputNavbar, Navbar, TitleNavbar } from './HeaderStyled.js';
 
@@ -21,8 +22,11 @@ function Header() {
   return (
     <Navbar>
       <TitleNavbar>
-        <Link to='/'><MdOutlineMovieFilter/> Movie App</Link>
+        <Link to='/'><BsCollectionPlayFill/></Link>
+        <>|</>
+        <Link to='movie/top_rated'>Top Filmes</Link>
       </TitleNavbar>
+      
       
      <FormNavbar onSubmit={handleSubmit}>
          <InputNavbar 

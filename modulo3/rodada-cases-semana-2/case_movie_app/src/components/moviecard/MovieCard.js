@@ -5,12 +5,12 @@ import { PaMovie, TitleMovie, MovieCardS} from './MovieCardStyled'
 const imageUrl = process.env.REACT_APP_IMG
 const MovieCard = ({movie, showLink = true}) => {
   return (
-    <MovieCardS>
+    <MovieCardS key={movie.id} >
         <img src={imageUrl + movie.poster_path} alt={movie.title}/>
-        <TitleMovie>{movie.title}</TitleMovie>
-        <PaMovie>
+        {showLink && <TitleMovie>{movie.title}</TitleMovie>}
+        {showLink && <PaMovie>
             <FaStar/> {movie.vote_average}
-        </PaMovie>
+        </PaMovie> }
         {showLink && <Link to={`/movie/${movie.id}`}>Detalhes</Link>}
     </MovieCardS>
   )

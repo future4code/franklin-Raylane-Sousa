@@ -1,55 +1,31 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import MenuGenreList from "../components/menuGenreList/MenuGenreList";
 import MovieCard from "../components/moviecard/MovieCard";
+import api from "../services/api";
 import './MoviesGrid.css'
 
 const API_KEY = process.env.REACT_APP_API_KEY
-const BASE_URL = process.env.REACT_APP_API;
-const GENRE_URL = process.env.REACT_APP_GENRE
 
 const Home = () => {
-  const [genreMovies, setGenreList] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
-  const navigate = useNavigate();
 
-  const getMoviesPopular = async (url) => {
-    const res = await fetch(url)
-    const data = await res.json() 
+  const takePopularHome = () => {
+    api.get(`movie/popular?${API_KEY}`)
+    .then((res) => {
 
-    setPopularMovies(data.results.slice(0,3))
-}
+      setPopularMovies(res.data.results.slice(0,3))
+    }).catch((error) => {
+      console.log(error.code)
+    })
 
-
-  const getGenreList = async (url) => {
-    const res = await fetch(url)
-    const data = await res.json() 
-
-    setGenreList(data.genres)
-}
-
-  useEffect(() =>{
-    const moviePopularUrl =`${BASE_URL}popular?${API_KEY}`
- 
-    getMoviesPopular (moviePopularUrl)
-  }, [])
-
-  useEffect(() =>{
-    const genreListUrl =`${GENRE_URL}list?${API_KEY}&language=pt-BR`
-    console.log(genreListUrl)
-    getGenreList(genreListUrl)
-
-  }, [])
+  }
+  
+   useEffect(takePopularHome, []) 
 
   return (
       <div className="container">
-        <h1 className="title">The Movie App</h1>
-        <div>
-         <div className="topMovies">
-              {genreMovies.length > 0 && genreMovies.map((genre) =>
-                  <button onClick={()=>navigate(`/search?q=${genre.name}`)}>{genre.name}</button>
-              )}
-          </div>
-        </div>
+        <MenuGenreList/>
       <div>
         <h2 className="title">Os mais populares do momento</h2>
             <div className="topMovies">

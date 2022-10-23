@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home'
-import Movie from '../pages/Movie';
+import Movie from '../pages/movie/Movie';
 import PopularMovies from '../pages/PopularMovies';
-import Search from '../pages/Search';
 import TopRatedMovies from '../pages/TopRatedMovies';
+import Search from '../services/Search';
 
 const Router = () => {
     return (

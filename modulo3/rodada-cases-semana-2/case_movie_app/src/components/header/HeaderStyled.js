@@ -5,6 +5,7 @@ export const Navbar = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    margin-bottom: 0.5rem;
     background-color: #02033b;
 `
 
@@ -39,4 +40,8 @@ export const FormButton = styled.button`
         background-color: transparent;
         color: #f7d354
     }
+`
+
+export const Logo = styled.div`
+    font-size: 2rem;
 `

@@ -1,26 +1,23 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/moviecard/MovieCard";
+import api from "../services/api";
 import './MoviesGrid.css'
 
 const API_KEY = process.env.REACT_APP_API_KEY
-const BASE_URL = process.env.REACT_APP_API;
 
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);
 
-  const getMoviesPopular = async (url) => {
-    const res = await fetch(url)
-    const data = await res.json() 
-
-    setPopularMovies(data.results)
+  const takeMoviesPopular = () => {
+    api.get(`movie/popular?${API_KEY}`)
+    .then((res) => {
+      setPopularMovies(res.data.results)
+    }).catch((error) => {
+      console.log(error.code)
+    })
 }
 
-
-  useEffect(() =>{
-    const moviePopularUrl =`${BASE_URL}popular?${API_KEY}`
- 
-    getMoviesPopular (moviePopularUrl)
-  }, [])
+  useEffect(takeMoviesPopular, [])
 
   return (
       <div className="container">
