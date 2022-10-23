@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/footer/Footer";
 import MenuGenreList from "../components/menuGenreList/MenuGenreList";
 import MovieCard from "../components/moviecard/MovieCard";
 import api from "../services/api";
@@ -24,7 +25,7 @@ const Home = () => {
    useEffect(takePopularHome, []) 
 
   return (
-      <div className="container">
+    <div className="container">
         <MenuGenreList/>
       <div>
         <h2 className="title">Os mais populares do momento</h2>
@@ -36,6 +37,7 @@ const Home = () => {
             </div>
             <p className="link"><Link to={`/movie/popular`}>Ver mais</Link></p>
       </div>
+      <Footer/>
     </div>
   )
 };
