@@ -13,6 +13,11 @@ export const TitleNavbar = styled.h2`
     display: flex;
     align-items: center;
     gap:0.5rem;
+    color: #d0efff;
+    &:hover{
+        background-color: transparent;
+        color: #f7d354
+    }
 `
 
 export const FormNavbar = styled.form`

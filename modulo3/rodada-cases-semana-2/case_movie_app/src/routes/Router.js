@@ -9,10 +9,10 @@ const Router = () => {
     return (
         <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='movie/:id' element={<Movie/>}/>
             <Route path='search' element={<Search/>}/>
             <Route path='movie/popular' element={<PopularMovies/>}/>
             <Route path='movie/top_rated' element={<TopRatedMovies/>}/>
+            <Route path='movie/:id' element={<Movie/>}/>
         </Routes>
     )
 }
