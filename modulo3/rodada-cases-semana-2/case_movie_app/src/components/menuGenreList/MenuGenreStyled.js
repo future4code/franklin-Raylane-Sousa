@@ -10,5 +10,8 @@ export const Button = styled.button`
     :hover {
         background-color: #d0efff;
         color: #02033b;
+        transform: scale(1.1);
+        transition: transform .2s;
     }
+    
 `

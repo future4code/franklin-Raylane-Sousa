@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import MovieCard from "../components/moviecard/MovieCard";
-import api from "../services/api";
-import './MoviesGrid.css'
+import MovieCard from "../../components/moviecard/MovieCard";
+import api from "../../services/api";
+import '../MoviesGrid.css'
 import{AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
-import { Button, Container } from "./PopularMoviesStyled";
+import { Button, Container, Title } from "./PopularMoviesStyled";
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -23,20 +23,18 @@ const PopularMovies = () => {
   const takeMoviesPopular = () => {
     api.get(`movie/popular?${API_KEY}&language=pt-BR&page=${page}`)
     .then((res) => {
-      setPopularMovies(res.data.results)
+      setPopularMovies(res.data.results.slice(0,9))
     }).catch((error) => {
       console.log(error.code)
     })
 }
 
 
-useEffect(() => {takeMoviesPopular()}, [page])
+useEffect(takeMoviesPopular, [page])
 
   return (
       <Container>
-        <div>
-          <h2 className="title">Filmes populares no momento</h2>
-        </div>
+          <Title className="title">Filmes populares no momento</Title>
         <div div className="topMovies">
             {popularMovies.length > 0 && popularMovies.map((pm) =>
               <MovieCard key={pm.id} movie={pm}/>

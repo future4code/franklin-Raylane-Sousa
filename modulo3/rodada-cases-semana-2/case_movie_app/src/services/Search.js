@@ -3,7 +3,7 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
 import {useSearchParams} from 'react-router-dom'
 import MovieCard from "../components/moviecard/MovieCard"
 import '../pages/MoviesGrid.css'
-import { Button, Container } from "../pages/PopularMoviesStyled"
+import { Button, Container } from "../pages/popularMovie/PopularMoviesStyled"
 import api from "./api"
 
 const API_KEY = process.env.REACT_APP_API_KEY
@@ -28,13 +28,13 @@ const Search = () => {
  
     api.get(`search/movie/?${API_KEY}&query=${query}&language=pt-BR&page=${page}`)
     .then((res) => {
-      setWantedMovie(res.data.results)
+      setWantedMovie(res.data.results.slice(0,9))
     }).catch((error) => {
       console.log(error.code)
     })
 }
 
-  useEffect(() => {searchMovie()}, [query, page]) //trazer para dentro do use effect renderiza a busca com outra ativa 
+  useEffect(searchMovie, [query, page])
 
   return (
     <Container>

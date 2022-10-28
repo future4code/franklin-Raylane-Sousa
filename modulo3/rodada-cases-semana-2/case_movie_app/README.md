@@ -13,10 +13,10 @@ Ao executar abra o navegador no endereço [http://localhost:3000](http://localho
 
 ## FERRAMENTAS UTILIZADAS 
 
-- [React](https://pt-br.reactjs.org/)
-- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [axios](npmjs.com/package/axios)
-- [styled-components](https://www.npmjs.com/package/styled-components)
+- Framework[React](https://pt-br.reactjs.org/)
+- Rotas [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- Requisições HTTP com [axios](npmjs.com/package/axios)
+- Estilos com [styled-components](https://www.npmjs.com/package/styled-components)
 
 
 ##  PÁGINAS (`ROTA`)
@@ -50,37 +50,94 @@ No diretório `services` foi criada uma instância do `axios` com uma configura�
 
     export default api;
 ```
-### Requisição
 
-Ao criar a instância do `axios` os métodos que a api possui ficam disponíveis para utilização. Segue um exemplo de como fazer uma requisição com o método `.get` 
-- axios.get()
+# DESCRIÇÃO DAS IMPLEMENTAÇÕES DA PÁGINA PopularMovies
+## Hooks
 
+São funções que permitem a utilização do state e outros recursos do React sem escrever uma classe.
+### useState()
+
+O [useState()](https://reactjs.org/docs/hooks-state.html) é uma função especial que permite a utilização de recursos do React, retornando um par de valores composto por: 
+- popularMovies: variável que armazena o estado atual;
+- setPopularMovies: função que atualiza o estado da variável popularMovies;
+- useState([]): indica o estado ininial da variável 
+
+Resumo: a variável `popularMovie` será responsável por receber as informações que seráo puxadas da requisição HTTP, e ela inicia com um array [] vazio.
 
 ```js
-const takePopularMovies = () => {
-    api.get(`movie/popular?${API_KEY}`)
+
+import { useState } from "react";  //IMPORTANDO O HOOK 
+
+const PopularMovies = () => {
+  const [popularMovies, setPopularMovies] = useState([]);  //DECLARANO A VARIÁVEL DE ESTADO
+  //...
+};
+```
+## Requisição
+
+### Axis
+
+Ao criar a instância do `axios` os métodos que a api possui ficam disponíveis para utilização.\
+Segue um exemplo de como fazer uma requisição utilizando o método`.get`, veja outros [métodos](https://axios-http.com/ptbr/docs/post_example).
+
+```js
+import api from "../../services/api";
+
+
+const PopularMovies = () => {
+  //...[VARIAVEL DE ESTADO] 
+
+const takePopularMovies = () => { //DECLARAÇÃO DA FUNÇÃO QUE FAZ A REQUISIÇÃO DOS FILMES POPULARES
+    api.get(`movie/popular?${API_KEY}`) //CHAMADA DO MÉTODO GET A PARTIR DA INSTÂNCIA DO AXIOS(import..)
     .then((res) => {
-      setPopularMovies(res.data.results)
+      setPopularMovies(res.data.results) //FUNÇÃO DE ATUALIZAÇÃO DA VARIAVEL DE ESTADO popularMovies
     }).catch((error) => {
       console.log(error.code)
     })
 
   }
+};
+
+export default PopularMovies;
 ```
-Exemplo de requisição com `fetch`
+### RENDERIZANDO INFORMAÇÕES
+
 ```js
-  const {id} = useParams()
-  const [movie, setMovie] =useState(null)
+const PopularMovies = () => {
+  //...[VARIAVEL DE ESTADO]
+ 
+ //...[REQUISIÇÃO AXIOS]
 
-  const getMovie = async(url) => {
-    const res = await fetch(url)
-    const data = await res.json() 
+  return (
+      <Container>
+          <Title className="title">Filmes populares no momento</Title>
+        <div div className="topMovies">
+            {popularMovies.length > 0 && popularMovies.map((pm) =>
+              <MovieCard key={pm.id} movie={pm}/>
+            )}
+        </div>
+        //...
+    </Container>
+  )
+};
 
-    setMovie(data)
-  }
+export default PopularMovies;
 
-  useEffect(() =>{
-    const movieUrl =`${BASE_URL}${id}?${API_KEY}`
-    getMovie(movieUrl)
-  }, [id])
-  ```js
+```
+### STYLED COMPONENTS 
+
+```js
+export const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    //...
+`
+
+export const Title = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    //...
+`
+```
+### COMPONENTE MOVIE CARD
+

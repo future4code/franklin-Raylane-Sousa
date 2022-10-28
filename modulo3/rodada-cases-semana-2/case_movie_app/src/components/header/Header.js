@@ -21,11 +21,15 @@ function Header() {
 
   return (
     <Navbar>
+      <FormNavbar>
       <TitleNavbar>
         <Link to='/'><BsCollectionPlayFill/></Link>
-        <>|</>
+      </TitleNavbar>
+      <>|</>
+      <TitleNavbar>
         <Link to='movie/top_rated'>Top Filmes</Link>
       </TitleNavbar>
+      </FormNavbar>
       
       
      <FormNavbar onSubmit={handleSubmit}>

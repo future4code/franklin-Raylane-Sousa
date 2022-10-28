@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+
+
 export const Button = styled.button`
     text-decoration: none;
     background-color: transparent;
@@ -19,7 +21,11 @@ export const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    text-align: center;
     max-width: 1200px;
     margin: 0 auto;
     flex-direction: column;
+`
+export const Title = styled.h2`
+    font-size: 2rem;
 `
